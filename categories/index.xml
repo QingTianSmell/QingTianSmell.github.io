@@ -1,0 +1,8 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - 分类 - OrionPax 的个人博客</title>
+        <link>http://blog.orionpax.top/categories/</link>
+        <description>Categories - 分类 - OrionPax 的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>OrionPax19970905@gmail.com (OrionPax)</managingEditor>
+            <webMaster>OrionPax19970905@gmail.com (OrionPax)</webMaster><atom:link href="http://blog.orionpax.top/categories/" rel="self" type="application/rss+xml" /></channel>
+</rss>

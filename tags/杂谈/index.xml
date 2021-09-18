@@ -1,0 +1,43 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>杂谈 - 标签 - OrionPax 的个人博客</title>
+        <link>http://blog.orionpax.top/tags/%E6%9D%82%E8%B0%88/</link>
+        <description>杂谈 - 标签 - OrionPax 的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>OrionPax19970905@gmail.com (OrionPax)</managingEditor>
+            <webMaster>OrionPax19970905@gmail.com (OrionPax)</webMaster><lastBuildDate>Sat, 14 Mar 2020 22:24:11 &#43;0800</lastBuildDate><atom:link href="http://blog.orionpax.top/tags/%E6%9D%82%E8%B0%88/" rel="self" type="application/rss+xml" /><item>
+    <title>RESTful 知识总结</title>
+    <link>http://blog.orionpax.top/2020/03/restful/</link>
+    <pubDate>Sat, 14 Mar 2020 22:24:11 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/restful/</guid>
+    <description><![CDATA[什么是 RESTful? RESTful 就是一种当前互联网软件的 api 设计模式。最早是由 Fielding 在他的博士论文里提出，定名为 REST，即 Representational State Transfer 的缩写。要理解 RESTful 架构，最好的方法就是去]]></description>
+</item><item>
+    <title>HTTP 知识总结</title>
+    <link>http://blog.orionpax.top/2020/03/http/</link>
+    <pubDate>Sat, 14 Mar 2020 15:36:54 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/http/</guid>
+    <description><![CDATA[HTTP 协议是什么？ HTTP 协议是超文本传输协议的缩写，英文是 Hyper Text Transfer Protocol。它是从 WEB 服务器传输超文本标记语言 (HTML) 到本地浏览器的传送协议。设计 HTTP 最]]></description>
+</item><item>
+    <title>MacOS 下的终端 &#43; Shell 选择</title>
+    <link>http://blog.orionpax.top/2020/03/mac-terminal/</link>
+    <pubDate>Wed, 04 Mar 2020 22:55:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/mac-terminal/</guid>
+    <description><![CDATA[前言 MacOS 下个人的解决方案为 Alacritty + fishshell + Oh My Fish， 从 zsh 转到 fish 的原因就是因为 zsh 太慢了。Alacritty 是一个跨平台、GPU 增强的终端模拟器，目前]]></description>
+</item><item>
+    <title>什么是TCP/IP</title>
+    <link>http://blog.orionpax.top/2020/01/tcp-ip/</link>
+    <pubDate>Wed, 08 Jan 2020 17:40:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/01/tcp-ip/</guid>
+    <description><![CDATA[计算机网络体系结构分层 OSI 参考模型注重“通信协议必要的功能是什么”，而 TCP/IP 则更强调“在计算机上实现协议应该开发哪种程序”。 主要协议 IP 协议 按层次分]]></description>
+</item><item>
+    <title>Mini Progarm 技术选型</title>
+    <link>http://blog.orionpax.top/2019/10/mini-progarm/</link>
+    <pubDate>Wed, 16 Oct 2019 13:34:10 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2019/10/mini-progarm/</guid>
+    <description><![CDATA[优劣对比 名称 性能 开发效率 接入成本 原生兼容性 多端支持 状态管理 样式支持 TypeScript 校验程度 成熟程度 更新频率 Issues(open/closed) Star 原生 最高 最低 中等 - 不支持 不支持 wxss 不支持 最低 成]]></description>
+</item></channel>
+</rss>

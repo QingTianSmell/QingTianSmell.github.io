@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Angular 的使用 - OrionPax 的个人博客</title><meta name="Description" content=""><meta property="og:title" content="Angular 的使用" />
+<meta property="og:description" content="简介 Angular 是一个应用设计框架与开发平台，用于创建高效、复杂、精致的单页面应用。 基础 模版语法 Angular 模板语法的五个常用特性： *ngFor *ngIf 插值 {{}} 属性绑定 [] 事件绑定" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.orionpax.top/2020/04/angular/" />
+<meta property="article:published_time" content="2020-04-12T14:28:05+08:00" />
+<meta property="article:modified_time" content="2020-04-12T14:28:05+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Angular 的使用"/>
+<meta name="twitter:description" content="简介 Angular 是一个应用设计框架与开发平台，用于创建高效、复杂、精致的单页面应用。 基础 模版语法 Angular 模板语法的五个常用特性： *ngFor *ngIf 插值 {{}} 属性绑定 [] 事件绑定"/>
+<meta name="application-name" content="OrionPax 的个人博客">
+<meta name="apple-mobile-web-app-title" content="OrionPax 的个人博客"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.orionpax.top/2020/04/angular/" /><link rel="prev" href="http://blog.orionpax.top/2020/04/mybatis/" /><link rel="next" href="http://blog.orionpax.top/2021/05/druid/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Angular 的使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/blog.orionpax.top\/2020\/04\/angular\/"
+        },"genre": "posts","keywords": "框架","wordcount":  2106 ,
+        "url": "http:\/\/blog.orionpax.top\/2020\/04\/angular\/","datePublished": "2020-04-12T14:28:05+08:00","dateModified": "2020-04-12T14:28:05+08:00","publisher": {
+            "@type": "Organization",
+            "name": "OrionPax"},"author": {
+                "@type": "Person",
+                "name": "OrionPax"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/mind-map/"> 导读 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/mind-map/" title="">导读</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Angular 的使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/OrionPax19970905" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>OrionPax</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-12">2020-04-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2106 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/2020/04/angular/" class="leancloud_visitors" data-flag-title="Angular 的使用">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#基础">基础</a>
+      <ul>
+        <li><a href="#模版语法">模版语法</a></li>
+        <li><a href="#组件">组件</a></li>
+        <li><a href="#输入和输出">输入和输出</a></li>
+        <li><a href="#注册路由">注册路由</a></li>
+        <li><a href="#使用路由信息">使用路由信息</a></li>
+        <li><a href="#使用服务">使用服务</a></li>
+        <li><a href="#在-appmodule-中为应用启用-httpclient">在 AppModule 中为应用启用 HttpClient</a></li>
+        <li><a href="#表单">表单</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<p>Angular 是一个应用设计框架与开发平台，用于创建高效、复杂、精致的单页面应用。</p>
+<h2 id="基础">基础</h2>
+<h3 id="模版语法">模版语法</h3>
+<p>Angular 模板语法的五个常用特性：</p>
+<ul>
+<li>*ngFor</li>
+<li>*ngIf</li>
+<li>插值 {{}}</li>
+<li>属性绑定 []</li>
+<li>事件绑定 ()</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;h2&gt;Products&lt;/h2&gt;
+
+&lt;div *ngFor=&#34;let product of products&#34;&gt;
+
+  &lt;h3&gt;
+    &lt;a [title]=&#34;product.name + &#39; details&#39;&#34;&gt;
+      {{ product.name }}
+    &lt;/a&gt;
+  &lt;/h3&gt;
+
+  &lt;p *ngIf=&#34;product.description&#34;&gt;
+    Description: {{ product.description }}
+  &lt;/p&gt;
+
+  &lt;button (click)=&#34;share()&#34;&gt;
+    Share
+  &lt;/button&gt;
+
+&lt;/div&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="组件">组件</h3>
+<p>组件在用户界面（也就是 UI）中定义了一些责任区，让你能重用这些 UI 功能集。Angular 应用程序由一棵组件树组成，每个 Angular 组件都有一个明确的用途和责任。</p>
+<p>组件包含三部分：</p>
+<ul>
+<li>一个组件类，它用来处理数据和功能。上一节，我们在组件类中定义了商品数据和 share() 方法，它们分别用来处理数据和功能。</li>
+<li>一个 HTML 模板，它决定了 UI。在上一节中，商品列表的 HTML 模板用来显示每个商品的名称、描述和 “Share” 按钮。</li>
+<li>组件专属的样式定义了外观和感觉。商品列表中还没有定义任何样式，那属于组件 CSS 负责。</li>
+</ul>
+<h3 id="输入和输出">输入和输出</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">import { Component, OnInit, Input, Output, EventEmitter } from &#34;@angular/core&#34;;
+
+@Component({
+  selector: &#34;app-product-alerts&#34;,
+  templateUrl: &#34;./product-alerts.component.html&#34;,
+  styleUrls: [&#34;./product-alerts.component.css&#34;]
+})
+export class ProductAlertsComponent implements OnInit {
+  // @Input() 装饰器指出其属性值是从该组件的父组件商品列表组件中传入的。
+  @Input() product;
+  // 在组件类中，用 @Output() 装饰器和一个事件发射器 EventEmitter() 实例定义一个名为 notify 的属性。这可以让组件在 notify 属性发生变化时发出事件。
+  @Output() notify = new EventEmitter();
+
+  constructor() {}
+
+  ngOnInit() {}
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;p *ngIf=&#34;product.price &gt; 700&#34;&gt;
+  &lt;!-- 点击时触发自定义 notify 事件 --&gt;
+  &lt;button (click)=&#34;notify.emit()&#34;&gt;Notify Me&lt;/button&gt;
+&lt;/p&gt;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">import { Component } from &#34;@angular/core&#34;;
+
+import { products } from &#34;../products&#34;;
+
+@Component({
+  selector: &#34;app-product-list&#34;,
+  templateUrl: &#34;./product-list.component.html&#34;,
+  styleUrls: [&#34;./product-list.component.css&#34;]
+})
+export class ProductListComponent {
+  products = products;
+
+  share() {
+    window.alert(&#34;The product has been shared!&#34;);
+  }
+
+  // 定义 onNotify 方法
+  onNotify() {
+    window.alert(&#34;You will be notified when the product goes on sale&#34;);
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;h2&gt;Products&lt;/h2&gt;
+
+&lt;div *ngFor=&#34;let product of products&#34;&gt;
+
+    &lt;h3&gt;
+        &lt;a [title]=&#34;product.name + &#39; details&#39;&#34;&gt;
+            {{ product.name }}
+        &lt;/a&gt;
+    &lt;/h3&gt;
+
+    &lt;p *ngIf=&#34;product.description&#34;&gt;
+        Description: {{ product.description }}
+    &lt;/p&gt;
+
+    &lt;button (click)=&#34;share()&#34;&gt;
+    Share
+    &lt;/button&gt;
+    &lt;!-- 只要像使用 HTML 元素一样使用它的选择器（ app-product-alert ）就可以了。 --&gt;
+    &lt;!-- 通过属性绑定把当前商品作为输入传给组件。 --&gt;
+    &lt;!-- 为 notify 事件绑定触发方法 --&gt;
+    &lt;app-product-alerts [product]=&#34;product&#34; (notify)=&#34;onNotify()&#34;&gt;
+    &lt;/app-product-alerts&gt;
+
+&lt;/div&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="注册路由">注册路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">@NgModule({
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      { path: &#39;&#39;, component: ProductListComponent },
+      // 在 app.module.ts 中，添加一个商品详情路由，该路由的 path 是 products/:productId，component 是 ProductDetailsComponent。
+      { path: &#39;products/:productId&#39;, component: ProductDetailsComponent },
+    ])
+  ],
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;!-- 修改 *ngFor 指令，在遍历列表的过程中把 products 数组中的每个索引赋值给 productId 变量 --&gt;
+&lt;div *ngFor=&#34;let product of products; index as productId&#34;&gt;
+
+  &lt;h3&gt;
+    &lt;!-- RouterLink 指令让路由器控制了一个链接元素。在这种情况下，路由或 URL 包含一个固定的区段（ /products ），但其最后一个区段是变量，要插入当前商品的 id 属性。 --&gt;
+    &lt;a [title]=&#34;product.name + &#39; details&#39;&#34; [routerLink]=&#34;[&#39;/products&#39;, productId]&#34;&gt;
+      {{ product.name }}
+    &lt;/a&gt;
+  &lt;/h3&gt;
+&lt;!-- . . . --&gt;
+&lt;/div&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用路由信息">使用路由信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">import { Component, OnInit } from &#34;@angular/core&#34;;
+// 包含与当前组件相关的路由信息。ActivatedRoute 也可用于遍历路由器的状态树。
+import { ActivatedRoute } from &#34;@angular/router&#34;;
+import { products } from &#34;../products&#34;;
+
+@Component({
+  selector: &#34;app-product-details&#34;,
+  templateUrl: &#34;./product-details.component.html&#34;,
+  styleUrls: [&#34;./product-details.component.css&#34;]
+})
+export class ProductDetailsComponent implements OnInit {
+  product;
+
+  // 将 ActivatedRoute 作为参数添加到构造函数的括号中，以便在上下文中使用 this.route。
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    // 订阅了路由参数，并且根据 productId 获取了该产品，在模版里使用 product 即可
+    this.route.paramMap.subscribe(params =&gt; {
+      this.product = products[+params.get(&#34;productId&#34;)];
+    });
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用服务">使用服务</h3>
+<p>服务是 Angular 应用的重要组成部分。在 Angular 中，服务是一个类的实例，它可以借助 Angular 的依赖注入系统来让应用中的任何一个部件都能使用它。服务可以让你在应用的各个部件之间共享数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">import { Injectable } from &#39;@angular/core&#39;;
+
+// 定义购物车服务
+export class CartService {
+  items = [];
+
+  addToCart(product) {
+    this.items.push(product);
+  }
+
+  getItems() {
+    return this.items;
+  }
+
+  clearCart() {
+    this.items = [];
+    return this.items;
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">import { Component, OnInit } from &#39;@angular/core&#39;;
+import { ActivatedRoute } from &#39;@angular/router&#39;;
+
+import { products } from &#39;../products&#39;;
+// 引入服务
+import { CartService } from &#39;../cart.service&#39;;
+
+export class ProductDetailsComponent implements OnInit {
+  // 通过构造方法注入服务
+  constructor(
+    private route: ActivatedRoute,
+    private cartService: CartService
+  ) { }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="在-appmodule-中为应用启用-httpclient">在 AppModule 中为应用启用 HttpClient</h3>
+<p>在使用 Angular 的 HTTP 客户端之前，你必须先配置你的应用来使用 HttpClientModule。Angular 的 HttpClientModule 中注册了在整个应用中使用 HttpClient 服务的单个实例所需的服务提供商。</p>
+<ol>
+<li>打开 app.module.ts。</li>
+<li>在该文件的顶部从 @angular/common/http 包中导入 HttpClientModule 以及其它导入项。</li>
+<li>把 HttpClientModule 添加到 AppModule @NgModule() 的 imports 数组中，以便全局注册 Angular 的 HttpClient。</li>
+<li>AppModule 已经导入了 HttpClientModule，接下来就是将 HttpClient 服务注入到你的服务中，以便此应用可以获取数据并与外部 API 和资源进行交互。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">import { Injectable } from &#39;@angular/core&#39;;
+
+// 导入 HttpClient
+import { HttpClient } from &#39;@angular/common/http&#39;;
+
+export class CartService {
+  items = [];
+
+  // 注入 HttpClient
+  constructor(
+    private http: HttpClient
+  ) {}
+
+  getShippingPrices() {
+    // 请求资源
+    return this.http.get(&#39;/assets/shipping.json&#39;);
+  }
+
+}
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">export class ShippingComponent implements OnInit {
+  shippingCosts;
+
+  constructor(
+    private cartService: CartService
+  ) {
+  }
+
+  ngOnInit() {
+    this.shippingCosts = this.cartService.getShippingPrices();
+  }
+
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>async 管道从数据流中返回最新值，并在所属组件的生命期内持续返回。当 Angular 销毁该组件时，async 管道会自动停止。有关 async 管道的详细信息，请参见 <a href="https://angular.cn/api/common/AsyncPipe" target="_blank" rel="noopener noreffer">AsyncPipe API 文档</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;h3&gt;Shipping Prices&lt;/h3&gt;
+
+&lt;div class=&#34;shipping-item&#34; *ngFor=&#34;let shipping of shippingCosts | async&#34;&gt;
+  &lt;span&gt;{{ shipping.type }}&lt;/span&gt;
+  &lt;span&gt;{{ shipping.price | currency }}&lt;/span&gt;
+&lt;/div&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="表单">表单</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">import { Component, OnInit } from &#39;@angular/core&#39;;
+// Angular 的 FormBuilder 服务为生成控件提供了方便的方法。
+import { FormBuilder } from &#39;@angular/forms&#39;;
+
+import { CartService } from &#39;../cart.service&#39;;
+
+@Component({
+  selector: &#39;app-cart&#39;,
+  templateUrl: &#39;./cart.component.html&#39;,
+  styleUrls: [&#39;./cart.component.css&#39;]
+})
+export class CartComponent implements OnInit {
+  items;
+  checkoutForm;
+
+  // 注入服务
+  constructor(
+    private cartService: CartService,
+    private formBuilder: FormBuilder,
+  ) {
+
+    // 把 checkoutForm 属性设置为一个包含 name 和 address 字段的表单模型。使用 FormBuilder 的 group() 方法来创建它，把该语句加入构造函数的花括号 {} 中间。
+    this.checkoutForm = this.formBuilder.group({
+      name: &#39;&#39;,
+      address: &#39;&#39;
+    });
+  }
+
+  ngOnInit() {
+    this.items = this.cartService.getItems();
+  }
+
+  onSubmit(customerData) {
+    // Process checkout data here
+    console.warn(&#39;Your order has been submitted&#39;, customerData);
+
+    this.items = this.cartService.clearCart();
+    // 清空表单
+    this.checkoutForm.reset();
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>为 name 和 address 添加输入字段。使用 formControlName 属性绑定来把 checkoutForm 表单控件中的 name 和 address 绑定到它们的输入字段。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;h3&gt;Cart&lt;/h3&gt;
+
+&lt;p&gt;
+  &lt;a routerLink=&#34;/shipping&#34;&gt;Shipping Prices&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div class=&#34;cart-item&#34; *ngFor=&#34;let item of items&#34;&gt;
+  &lt;span&gt;{{ item.name }} &lt;/span&gt;
+  &lt;span&gt;{{ item.price | currency }}&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;form [formGroup]=&#34;checkoutForm&#34; (ngSubmit)=&#34;onSubmit(checkoutForm.value)&#34;&gt;
+
+  &lt;div&gt;
+    &lt;label for=&#34;name&#34;&gt;
+      Name
+    &lt;/label&gt;
+    &lt;input id=&#34;name&#34; type=&#34;text&#34; formControlName=&#34;name&#34;&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;label for=&#34;address&#34;&gt;
+      Address
+    &lt;/label&gt;
+    &lt;input id=&#34;address&#34; type=&#34;text&#34; formControlName=&#34;address&#34;&gt;
+  &lt;/div&gt;
+
+  &lt;button class=&#34;button&#34; type=&#34;submit&#34;&gt;Purchase&lt;/button&gt;
+
+&lt;/form&gt;
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://blog.orionpax.top/2020/04/angular/" data-title="Angular 的使用" data-hashtags="框架"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://blog.orionpax.top/2020/04/angular/" data-hashtag="框架"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="http://blog.orionpax.top/2020/04/angular/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://blog.orionpax.top/2020/04/angular/" data-title="Angular 的使用"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://blog.orionpax.top/2020/04/angular/" data-title="Angular 的使用"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://blog.orionpax.top/2020/04/angular/" data-title="Angular 的使用" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://blog.orionpax.top/2020/04/angular/" data-title="Angular 的使用" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://blog.orionpax.top/2020/04/angular/" data-title="Angular 的使用"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://blog.orionpax.top/2020/04/angular/" data-title="Angular 的使用"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Trello" data-sharer="trello" data-url="http://blog.orionpax.top/2020/04/angular/" data-title="Angular 的使用" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2020/04/mybatis/" class="prev" rel="prev" title="Mybatis 的使用"><i class="fas fa-angle-left fa-fw"></i>Mybatis 的使用</a>
+            <a href="/2021/05/druid/" class="next" rel="next" title="唯二好用的连接池之 Druid 的使用">唯二好用的连接池之 Druid 的使用<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/OrionPax19970905" target="_blank">OrionPax</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"nW05u87yweVedDRhj6AUgzR1-gzGzoHsz","appKey":"4HgKbiggTv7ocU789S5WO6ov","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"确定不说点什么?","recordIP":true,"visitor":true}},"search":{"algoliaAppID":"1Z7P4N2DNP","algoliaIndex":"OrionPax Blog","algoliaSearchKey":"12b884f5e1e54aeab4cba52aeaf76362","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

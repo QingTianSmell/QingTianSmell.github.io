@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Mybatis 的使用 - OrionPax 的个人博客</title><meta name="Description" content=""><meta property="og:title" content="Mybatis 的使用" />
+<meta property="og:description" content="简介 Mybatis 是一个数据持久层(ORM)框架。但是只完成了结果集到对象的映射，而 Hibernate 是数据表到对象的映射。 优点： 简单易学：本身就很小且简单。没有任何第" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.orionpax.top/2020/04/mybatis/" />
+<meta property="article:published_time" content="2020-04-04T11:29:00+08:00" />
+<meta property="article:modified_time" content="2020-04-04T11:29:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mybatis 的使用"/>
+<meta name="twitter:description" content="简介 Mybatis 是一个数据持久层(ORM)框架。但是只完成了结果集到对象的映射，而 Hibernate 是数据表到对象的映射。 优点： 简单易学：本身就很小且简单。没有任何第"/>
+<meta name="application-name" content="OrionPax 的个人博客">
+<meta name="apple-mobile-web-app-title" content="OrionPax 的个人博客"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.orionpax.top/2020/04/mybatis/" /><link rel="prev" href="http://blog.orionpax.top/2020/03/flutter/" /><link rel="next" href="http://blog.orionpax.top/2020/04/angular/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mybatis 的使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/blog.orionpax.top\/2020\/04\/mybatis\/"
+        },"genre": "posts","wordcount":  4365 ,
+        "url": "http:\/\/blog.orionpax.top\/2020\/04\/mybatis\/","datePublished": "2020-04-04T11:29:00+08:00","dateModified": "2020-04-04T11:29:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "OrionPax"},"author": {
+                "@type": "Person",
+                "name": "OrionPax"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/mind-map/"> 导读 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/mind-map/" title="">导读</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Mybatis 的使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/OrionPax19970905" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>OrionPax</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-04">2020-04-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4365 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/2020/04/mybatis/" class="leancloud_visitors" data-flag-title="Mybatis 的使用">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#问题">问题</a>
+      <ul>
+        <li><a href="#spring-整合-mybatis-时mybatis-的一级缓存为何失效">Spring 整合 Mybatis 时，Mybatis 的一级缓存为何“失效”?</a></li>
+      </ul>
+    </li>
+    <li><a href="#应用场景">应用场景</a>
+      <ul>
+        <li><a href="#spring-boot-如何整合-mybatis">Spring Boot 如何整合 Mybatis?</a></li>
+        <li><a href="#通过-xml-文件使用-mybatis-框架">通过 xml 文件使用 Mybatis 框架</a>
+          <ul>
+            <li><a href="#简单的增删改查">简单的增删改查</a></li>
+            <li><a href="#集联查询">集联查询</a></li>
+            <li><a href="#懒加载">懒加载</a></li>
+            <li><a href="#缓存">缓存</a>
+              <ul>
+                <li><a href="#一级缓存">一级缓存</a></li>
+                <li><a href="#二级缓存">二级缓存</a></li>
+              </ul>
+            </li>
+            <li><a href="#动态-sql">动态 Sql</a></li>
+          </ul>
+        </li>
+        <li><a href="#如何使用逆向工程">如何使用逆向工程？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<p>Mybatis 是一个数据持久层(ORM)框架。但是只完成了结果集到对象的映射，而 Hibernate 是数据表到对象的映射。</p>
+<p>优点：</p>
+<ul>
+<li>简单易学：本身就很小且简单。没有任何第三方依赖，最简单安装只要两个 jar 文件+配置几个 sql 映射文件易于学习，易于使用，通过文档和源代码，可以比较完全的掌握它的设计思路和实现。</li>
+<li>灵活：mybatis 不会对应用程序或者数据库的现有设计强加任何影响。 sql 写在 xml 里，便于统一管理和优化。通过 sql 基本上可以实现我们不使用数据访问框架可以实现的所有功能，或许更多。</li>
+<li>解除 sql 与程序代码的耦合：通过提供 DAL 层，将业务逻辑和数据访问逻辑分离，使系统的设计更清晰，更易维护，更易单元测试。sql 和代码的分离，提高了可维护性。</li>
+<li>提供映射标签，支持对象与数据库的 orm 字段关系映射</li>
+<li>提供对象关系映射标签，支持对象关系组建维护</li>
+<li>提供 xml 标签，支持编写动态 sql。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>编写 SQL 语句时工作量很大，尤其是字段多、关联表多时，更是如此。</li>
+<li>SQL 语句依赖于数据库，导致数据库移植性差，不能更换数据库。</li>
+<li>框架还是比较简陋，功能尚有缺失，虽然简化了数据绑定代码，但是整个底层数据库查询实际还是要自己写的，工作量也比较大，而且不太容易适应快速数据库修改。</li>
+<li>二级缓存机制不佳</li>
+</ul>
+<h2 id="问题">问题</h2>
+<h3 id="spring-整合-mybatis-时mybatis-的一级缓存为何失效">Spring 整合 Mybatis 时，Mybatis 的一级缓存为何“失效”?</h3>
+<p>Spring 整合 Mybatis 时，只有在事务内部 Mybatis 的一级缓存才会生效这是为什么呢？首先我们要知道 Mybatis 的一级缓存生效的范围是 SqlSession。那么从结果来看应该是只有在事务的内部，查询方法才会使用同一 SqlSession，而没有事务的时候应该是创建了新的 SqlSssion，让我们看源码确认下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// Spring 在使用 SqlSession 对其进行了动态代理，其方法调用的拦截器就是 SqlSessionTemplate 的内部类 SqlSessionInterceptor
+</span><span class="c1"></span><span class="kd">private</span> <span class="kd">class</span> <span class="nc">SqlSessionInterceptor</span> <span class="kd">implements</span> <span class="n">InvocationHandler</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nf">SqlSessionInterceptor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+        <span class="c1">// 在执行方法时获取到 SqlSession
+</span><span class="c1"></span>        <span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">SqlSessionUtils</span><span class="o">.</span><span class="na">getSqlSession</span><span class="o">(</span><span class="n">SqlSessionTemplate</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">sqlSessionFactory</span><span class="o">,</span> <span class="n">SqlSessionTemplate</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">executorType</span><span class="o">,</span> <span class="n">SqlSessionTemplate</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">exceptionTranslator</span><span class="o">);</span>
+
+        <span class="n">Object</span> <span class="n">unwrapped</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">Object</span> <span class="n">result</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">sqlSession</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">SqlSessionUtils</span><span class="o">.</span><span class="na">isSqlSessionTransactional</span><span class="o">(</span><span class="n">sqlSession</span><span class="o">,</span> <span class="n">SqlSessionTemplate</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">sqlSessionFactory</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">sqlSession</span><span class="o">.</span><span class="na">commit</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="n">unwrapped</span> <span class="o">=</span> <span class="n">result</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">var11</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">unwrapped</span> <span class="o">=</span> <span class="n">ExceptionUtil</span><span class="o">.</span><span class="na">unwrapThrowable</span><span class="o">(</span><span class="n">var11</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">SqlSessionTemplate</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">exceptionTranslator</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">unwrapped</span> <span class="k">instanceof</span> <span class="n">PersistenceException</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">SqlSessionUtils</span><span class="o">.</span><span class="na">closeSqlSession</span><span class="o">(</span><span class="n">sqlSession</span><span class="o">,</span> <span class="n">SqlSessionTemplate</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">sqlSessionFactory</span><span class="o">);</span>
+                <span class="n">sqlSession</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                <span class="n">Throwable</span> <span class="n">translated</span> <span class="o">=</span> <span class="n">SqlSessionTemplate</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">exceptionTranslator</span><span class="o">.</span><span class="na">translateExceptionIfPossible</span><span class="o">((</span><span class="n">PersistenceException</span><span class="o">)</span><span class="n">unwrapped</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">translated</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">unwrapped</span> <span class="o">=</span> <span class="n">translated</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+            <span class="k">throw</span> <span class="o">(</span><span class="n">Throwable</span><span class="o">)</span><span class="n">unwrapped</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">sqlSession</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">SqlSessionUtils</span><span class="o">.</span><span class="na">closeSqlSession</span><span class="o">(</span><span class="n">sqlSession</span><span class="o">,</span> <span class="n">SqlSessionTemplate</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">sqlSessionFactory</span><span class="o">);</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">unwrapped</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 让我们再来看下 getSqlSession 方法
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">SqlSession</span> <span class="nf">getSqlSession</span><span class="o">(</span><span class="n">SqlSessionFactory</span> <span class="n">sessionFactory</span><span class="o">,</span> <span class="n">ExecutorType</span> <span class="n">executorType</span><span class="o">,</span> <span class="n">PersistenceExceptionTranslator</span> <span class="n">exceptionTranslator</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Assert</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">sessionFactory</span><span class="o">,</span> <span class="s">&#34;No SqlSessionFactory specified&#34;</span><span class="o">);</span>
+    <span class="n">Assert</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">executorType</span><span class="o">,</span> <span class="s">&#34;No ExecutorType specified&#34;</span><span class="o">);</span>
+    <span class="c1">// 维护了一个 SqlSessionHolder 用来关联事务和 SqlSession
+</span><span class="c1"></span>    <span class="n">SqlSessionHolder</span> <span class="n">holder</span> <span class="o">=</span> <span class="o">(</span><span class="n">SqlSessionHolder</span><span class="o">)</span><span class="n">TransactionSynchronizationManager</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="n">sessionFactory</span><span class="o">);</span>
+    <span class="c1">// 首先从 SqlSessionHolder 里取 SqlSession
+</span><span class="c1"></span>    <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">sessionHolder</span><span class="o">(</span><span class="n">executorType</span><span class="o">,</span> <span class="n">holder</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">session</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">session</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="c1">// 没有当前事务关联的 SqlSession 就直接创建一个新的返回
+</span><span class="c1"></span>        <span class="n">LOGGER</span><span class="o">.</span><span class="na">debug</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="s">&#34;Creating a new SqlSession&#34;</span><span class="o">;</span>
+        <span class="o">});</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">sessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">(</span><span class="n">executorType</span><span class="o">);</span>
+        <span class="n">registerSessionHolder</span><span class="o">(</span><span class="n">sessionFactory</span><span class="o">,</span> <span class="n">executorType</span><span class="o">,</span> <span class="n">exceptionTranslator</span><span class="o">,</span> <span class="n">session</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">session</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="应用场景">应用场景</h2>
+<h3 id="spring-boot-如何整合-mybatis">Spring Boot 如何整合 Mybatis?</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># application.yml
+# 配置数据源
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/learn_mybatis?characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+
+# 配置Mybatis
+mybatis:
+  # 配置实体包的位置
+  type-aliases-package: com.orionpax.learn.mybatis.entity
+  # Mapper 接口和 Mapper.xml 不在同一包下时，配置 Mapper.xml 的位置
+  mybatis.mapper-locations=classpath:mapper/*Mapper.xml
+  configuration:
+    # 配置开启懒加载
+    lazy-loading-enabled: true
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;!-- Mapper 接口和 Mapper.xml 在同一包下时配置 --&gt;
+&lt;build&gt;
+    &lt;resources&gt;
+        &lt;resource&gt;
+            &lt;directory&gt;src/main/java&lt;/directory&gt;
+            &lt;includes&gt;
+                &lt;include&gt;**/*.xml&lt;/include&gt;
+            &lt;/includes&gt;
+            &lt;filtering&gt;false&lt;/filtering&gt;
+        &lt;/resource&gt;
+    &lt;/resources&gt;
+&lt;/build&gt;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SpringBootApplication</span>
+<span class="c1">// 配置 Mapper 包的位置，如果不设置的话需要在每个 Mapper 接口上配置 @Mapper 注解。
+</span><span class="c1"></span><span class="nd">@MapperScan</span><span class="o">(</span><span class="s">&#34;com.orionpax.learn.mybatis.mapper&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MybatisApplication</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">MybatisApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="通过-xml-文件使用-mybatis-框架">通过 xml 文件使用 Mybatis 框架</h3>
+<h4 id="简单的增删改查">简单的增删改查</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.orionpax.learn.entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@Data</span>
+<span class="nd">@Builder</span>
+<span class="nd">@NoArgsConstructor</span>
+<span class="nd">@AllArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bar</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">Date</span> <span class="n">createTime</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Far</span><span class="o">&gt;</span> <span class="n">fars</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.orionpax.learn.entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="nd">@Data</span>
+<span class="nd">@Builder</span>
+<span class="nd">@NoArgsConstructor</span>
+<span class="nd">@AllArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Far</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">Date</span> <span class="n">createTime</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">Bar</span> <span class="n">bar</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;
+&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34; &gt;
+&lt;mapper namespace=&#34;com.orionpax.learn.mybatis.mapper.BarMapper&#34;&gt;
+    # 定义一个代码片段，可以在其他地方使用 include 标签引用
+    &lt;sql id=&#34;Bar_Column_List&#34;&gt;
+        id, name, create_time
+    &lt;/sql&gt;
+    # 插入
+    # id 为 sql 语句取个名称，需要和对应的 Mapper接口里的方法名保持一致
+    # parameterType 指定参数类型，如果是类就写全类名，并使用 #{} 来取值，如果是简单对象的话，#{中间的参数名可以随便写}
+    &lt;insert id=&#34;insert&#34; parameterType=&#34;com.orionpax.learn.mybatis.entity.Bar&#34;&gt;
+        insert into bar (name, create_time)
+        values (#{name}, #{createTime})
+    &lt;/insert&gt;
+    # 删除
+    &lt;delete id=&#34;deleteById&#34; parameterType=&#34;java.lang.Long&#34;&gt;
+        delete
+        from bar
+        where id = #{id}
+    &lt;/delete&gt;
+    # 修改
+    &lt;update id=&#34;updateById&#34; parameterType=&#34;com.orionpax.learn.mybatis.entity.Bar&#34;&gt;
+        update bar
+        set name        = #{name},
+            create_time = #{createTime}
+        where id = #{id}
+    &lt;/update&gt;
+    # 查询
+    # resultType 指定返回类型，如果是类同样是全类名
+    &lt;select id=&#34;selectById&#34; resultType=&#34;com.orionpax.learn.mybatis.entity.Bar&#34; parameterType=&#34;java.lang.Long&#34;&gt;
+        select
+        &lt;include refid=&#34;Bar_Column_List&#34;/&gt;
+        from bar
+        where id = #{id}
+    &lt;/select&gt;
+    # 查询列表，当查询返回多行时，返回类型是 List&lt;T&gt; 中的 T
+    &lt;select id=&#34;selectAll&#34; resultType=&#34;com.orionpax.learn.mybatis.entity.Bar&#34;&gt;
+        select
+        &lt;include refid=&#34;Bar_Column_List&#34;/&gt;
+        from bar
+    &lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="集联查询">集联查询</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;
+&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34; &gt;
+&lt;mapper namespace=&#34;com.orionpax.learn.mybatis.mapper.BarMapper&#34;&gt;
+    # 使用resultMap 映射返回结果
+    &lt;resultMap id=&#34;BaseResultMap&#34; type=&#34;com.orionpax.learn.mybatis.entity.Bar&#34;&gt;
+        # 主键映射
+        # column 指定返回字段名
+        # property 执行实体属性名
+        &lt;id column=&#34;id&#34; property=&#34;id&#34;/&gt;
+        # 其他参数映射
+        &lt;result column=&#34;name&#34; property=&#34;name&#34;/&gt;
+        &lt;result column=&#34;create_time&#34; property=&#34;createTime&#34;/&gt;
+    &lt;/resultMap&gt;
+    # 可以使用 extends 继承其他 resultMap 配置的映射
+    &lt;resultMap id=&#34;BarResultMap&#34; type=&#34;com.orionpax.learn.mybatis.entity.Bar&#34; extends=&#34;BaseResultMap&#34;&gt;
+        # collection 将结果映射为集合
+        # property 指定要映射到的实体属性名
+        # ofType 指定 List&lt;T&gt; 的 T
+        &lt;collection property=&#34;fars&#34; ofType=&#34;com.orionpax.learn.mybatis.entity.Far&#34;&gt;
+            &lt;id column=&#34;far_id&#34; property=&#34;id&#34;/&gt;
+            &lt;result column=&#34;far_name&#34; property=&#34;name&#34;/&gt;
+            &lt;result column=&#34;far_create_time&#34; property=&#34;createTime&#34;/&gt;
+        &lt;/collection&gt;
+    &lt;/resultMap&gt;
+    # 复杂的返回值使用 resultMap 代替 resultType
+    &lt;select id=&#34;selectById&#34; parameterType=&#34;java.lang.Long&#34; resultMap=&#34;BarResultMap&#34;&gt;
+        select b.id,
+               b.name,
+               b.create_time,
+               f.id          as far_id,
+               f.name        as far_name,
+               f.create_time as far_create_time
+        from bar b,
+             far f
+        where b.id = f.bar_id
+          and b.id = #{id}
+    &lt;/select&gt;
+    &lt;select id=&#34;selectAll&#34; resultMap=&#34;BarResultMap&#34;&gt;
+        select b.id,
+               b.name,
+               b.create_time,
+               f.id          as far_id,
+               f.name        as far_name,
+               f.create_time as far_create_time
+        from bar b
+                 left join far f on b.id = f.bar_id
+    &lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;
+&lt;mapper namespace=&#34;com.orionpax.learn.mybatis.mapper.FarMapper&#34;&gt;
+    &lt;resultMap id=&#34;BaseResultMap&#34; type=&#34;com.orionpax.learn.mybatis.entity.Far&#34;&gt;
+        &lt;id column=&#34;id&#34; property=&#34;id&#34;/&gt;
+        &lt;result column=&#34;name&#34; property=&#34;name&#34;/&gt;
+        &lt;result column=&#34;create_time&#34; property=&#34;createTime&#34;/&gt;
+    &lt;/resultMap&gt;
+    &lt;resultMap id=&#34;FarResultMap&#34; type=&#34;com.orionpax.learn.mybatis.entity.Far&#34; extends=&#34;BaseResultMap&#34;&gt;
+        # 使用 association 映射非集合的复杂属性
+        # javaType 指定属性类型，可以省略
+        &lt;association property=&#34;bar&#34; javaType=&#34;com.orionpax.learn.mybatis.entity.Bar&#34;&gt;
+            &lt;id column=&#34;bar_id&#34; property=&#34;id&#34;/&gt;
+            &lt;result column=&#34;bar_name&#34; property=&#34;name&#34;/&gt;
+            &lt;result column=&#34;bar_create_time&#34; property=&#34;createTime&#34;/&gt;
+        &lt;/association&gt;
+    &lt;/resultMap&gt;
+    &lt;select id=&#34;selectById&#34; parameterType=&#34;java.lang.Long&#34; resultMap=&#34;FarResultMap&#34;&gt;
+       select f.id,
+               f.name,
+               f.create_time,
+               b.id          as bar_id,
+               b.name        as bar_name,
+               b.create_time as bar_create_time
+        from far f,
+             bar b
+        where f.bar_id = b.id
+          and f.id = #{id}
+    &lt;/select&gt;
+    &lt;select id=&#34;selectByBarId&#34; parameterType=&#34;java.lang.Long&#34; resultMap=&#34;FarResultMap&#34;&gt;
+        select f.id,
+               f.name,
+               f.create_time,
+               b.id          as bar_id,
+               b.name        as bar_name,
+               b.create_time as bar_create_time
+        from far f,
+             bar b
+        where f.bar_id = b.id
+          and b.id = #{id}
+    &lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="懒加载">懒加载</h4>
+<p>首先确保在配置文件里开启了懒加载 <code>mybatis.configuration.lazy-loading-enabled: true</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;
+&lt;mapper namespace=&#34;com.orionpax.learn.mybatis.mapper.FarMapper&#34;&gt;
+    &lt;resultMap id=&#34;BaseResultMap&#34; type=&#34;com.orionpax.learn.mybatis.entity.Far&#34;&gt;
+        &lt;id column=&#34;id&#34; property=&#34;id&#34;/&gt;
+        &lt;result column=&#34;name&#34; property=&#34;name&#34;/&gt;
+        &lt;result column=&#34;create_time&#34; property=&#34;createTime&#34;/&gt;
+    &lt;/resultMap&gt;
+    &lt;resultMap id=&#34;FarResultMap&#34; type=&#34;com.orionpax.learn.mybatis.entity.Far&#34; extends=&#34;BaseResultMap&#34;&gt;
+        # 把结果字段映射为另一个查询的结果集
+        # select 指定目标查询
+        # column 指定当前查询的某个结果字段为目标查询的参数
+        &lt;association property=&#34;bar&#34; javaType=&#34;com.orionpax.learn.mybatis.entity.Bar&#34;
+                     select=&#34;com.orionpax.learn.mybatis.mapper.BarMapper.selectById&#34; column=&#34;bar_id&#34;/&gt;
+    &lt;/resultMap&gt;
+    # 懒加载查询，当前 sql 片段只是一个简单查询，当 resultMap 的懒加载字段被调用时，会根据配置调用另一查询
+    &lt;select id=&#34;selectByIdLazy&#34; parameterType=&#34;java.lang.Long&#34; resultMap=&#34;FarResultMap&#34;&gt;
+        select id, name, create_time, bar_id
+        from far
+        where id = #{id}
+    &lt;/select&gt;
+    # 被另一个 Mapper 的懒加载查询调用
+    &lt;select id=&#34;selectByBarId&#34; parameterType=&#34;java.lang.Long&#34; resultType=&#34;com.orionpax.learn.mybatis.entity.Far&#34;&gt;
+        select id, name, create_time
+        from far
+        where bar_id = #{id}
+    &lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;
+&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34; &gt;
+&lt;mapper namespace=&#34;com.orionpax.learn.mybatis.mapper.BarMapper&#34;&gt;
+    &lt;resultMap id=&#34;BaseResultMap&#34; type=&#34;com.orionpax.learn.mybatis.entity.Bar&#34;&gt;
+        &lt;id column=&#34;id&#34; property=&#34;id&#34;/&gt;
+        &lt;result column=&#34;name&#34; property=&#34;name&#34;/&gt;
+        &lt;result column=&#34;create_time&#34; property=&#34;createTime&#34;/&gt;
+    &lt;/resultMap&gt;
+    &lt;resultMap id=&#34;BarResultMap&#34; type=&#34;com.orionpax.learn.mybatis.entity.Bar&#34; extends=&#34;BaseResultMap&#34;&gt;
+        # 把结果字段映射为另一个查询的结果集
+        # select 指定目标查询
+        # column 指定当前查询的某个结果字段为目标查询的参数
+        &lt;collection property=&#34;fars&#34; ofType=&#34;com.orionpax.learn.mybatis.entity.Far&#34;
+                    select=&#34;com.orionpax.learn.mybatis.mapper.FarMapper.selectByBarId&#34; column=&#34;id&#34;/&gt;
+    &lt;/resultMap&gt;
+    # 懒加载查询，当前 sql 片段只是一个简单查询，当 resultMap 的懒加载字段被调用时，会根据配置调用另一查询
+    &lt;select id=&#34;selectByIdLazy&#34; parameterType=&#34;java.lang.Long&#34; resultMap=&#34;BarResultMap&#34;&gt;
+        select id, name, create_time
+        from bar
+        where id = #{id}
+    &lt;/select&gt;
+    # 被另一个 Mapper 的懒加载查询调用
+    &lt;select id=&#34;selectById&#34; parameterType=&#34;java.lang.Long&#34; resultType=&#34;com.orionpax.learn.mybatis.entity.Bar&#34;&gt;
+        select id, name, create_time
+        from bar
+        where id = #{id}
+    &lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="缓存">缓存</h4>
+<h5 id="一级缓存">一级缓存</h5>
+<p>SqlSession 级别，默认开启，并且不能关闭。</p>
+<p>操作数据库时需要创建 SqlSession 对象，在对象中有⼀个 HashMap ⽤于存储缓存数据，不同的
+SqlSession 之间缓存数据区域是互不影响的。</p>
+<p>需要注意的是，如果 SqlSession 执⾏了 DML 操作（insert、update、delete），MyBatis 必须将缓存
+清空以保证数据的准确性。</p>
+<h5 id="二级缓存">二级缓存</h5>
+<p>⼆级缓存是多个 SqlSession 共享的，其作⽤域是 Mapper 的同⼀个 namespace，不同的 SqlSession
+两次执⾏相同的 namespace 下的 SQL 语句，参数也相等，则第⼀次执⾏成功之后会将数据保存到⼆级
+缓存中，第⼆次可直接从⼆级缓存中取出数据。</p>
+<p>Mybatis 的二级缓存开启也非常简单，在 application.yml 中配置 <code>mybatis.configuration.cache-enabled: true</code> 开启二级缓存。在需要进行二级缓存的 Mapper.xml 中添加 <code>&lt;cache /&gt;</code> 标签，最后让缓存的对象实现序列化接口即可。</p>
+<p>ehcache ⼆级缓存，因为 Mybatis 的原声的二级缓存已经简单到简陋的程度了。 ehcache 提供了 Mybatis 二级缓存更好的支持。</p>
+<ol>
+<li>pom 文件添加相关依赖</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;dependency&gt;
+ &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+ &lt;artifactId&gt;mybatis-ehcache&lt;/artifactId&gt;
+ &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+ &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;
+ &lt;artifactId&gt;ehcache-core&lt;/artifactId&gt;
+ &lt;version&gt;2.4.3&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>添加 ehcache.xml 配置文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;ehcache xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+ xsi:noNamespaceSchemaLocation=&#34;../config/ehcache.xsd&#34;&gt;
+ &lt;diskStore/&gt;
+ &lt;defaultCache
+ maxElementsInMemory=&#34;1000&#34;
+ maxElementsOnDisk=&#34;10000000&#34;
+ eternal=&#34;false&#34;
+ overflowToDisk=&#34;false&#34;
+ timeToIdleSeconds=&#34;120&#34;
+ timeToLiveSeconds=&#34;120&#34;
+ diskExpiryThreadIntervalSeconds=&#34;120&#34;
+ memoryStoreEvictionPolicy=&#34;LRU&#34;&gt;
+ &lt;/defaultCache&gt;
+&lt;/ehcache&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>Mapper.xml 中开启二级缓存</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;cache type=&#34;org.mybatis.caches.ehcache.EhcacheCache&#34;&gt;
+ &lt;!-- 缓存创建之后，最后⼀次访问缓存的时间⾄缓存失效的时间间隔 --&gt;
+ &lt;property name=&#34;timeToIdleSeconds&#34; value=&#34;3600&#34;/&gt;
+ &lt;!-- 缓存⾃创建时间起⾄失效的时间间隔 --&gt;
+ &lt;property name=&#34;timeToLiveSeconds&#34; value=&#34;3600&#34;/&gt;
+ &lt;!-- 缓存回收策略，LRU表示移除近期使⽤最少的对象 --&gt;
+ &lt;property name=&#34;memoryStoreEvictionPolicy&#34; value=&#34;LRU&#34;/&gt;
+&lt;/cache&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>同样需要配置 <code>mybatis.configuration.cache-enabled: true</code> 开启二级缓存，但是缓存对象并不需要实现序列化接口</li>
+</ol>
+<h4 id="动态-sql">动态 Sql</h4>
+<ul>
+<li>if 标签，if 标签可以⾃动根据表达式的结果来决定是否将对应的语句添加到 SQL 中，如果条件不成⽴则不添加，
+如果条件成⽴则添加</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;select id=&#34;findByAccount&#34; parameterType=&#34;com.southwind.entity.Account&#34;
+resultType=&#34;com.southwind.entity.Account&#34;&gt;
+ select * from t_account where
+ &lt;if test=&#34;id!=0&#34;&gt;
+ id = #{id}
+ &lt;/if&gt;
+ &lt;if test=&#34;username!=null&#34;&gt;
+ and username = #{username}
+ &lt;/if&gt;
+ &lt;if test=&#34;password!=null&#34;&gt;
+ and password = #{password}
+ &lt;/if&gt;
+ &lt;if test=&#34;age!=0&#34;&gt;
+ and age = #{age}
+ &lt;/if&gt;
+&lt;/select&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>where 标签，where 标签可以⾃动判断是否要删除语句块中的 and 关键字，如果检测到 where 直接跟 and 拼接，则
+⾃动删除 and，通常情况下 if 和 where 结合起来使⽤</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;select id=&#34;findByAccount&#34; parameterType=&#34;com.southwind.entity.Account&#34;
+resultType=&#34;com.southwind.entity.Account&#34;&gt;
+ select * from t_account
+ &lt;where&gt;
+ &lt;if test=&#34;id!=0&#34;&gt;
+ id = #{id}
+ &lt;/if&gt;
+ &lt;if test=&#34;username!=null&#34;&gt;
+ and username = #{username}
+ &lt;/if&gt;
+ &lt;if test=&#34;password!=null&#34;&gt;
+ and password = #{password}
+ &lt;/if&gt;
+ &lt;if test=&#34;age!=0&#34;&gt;
+ and age = #{age}
+ &lt;/if&gt;
+ &lt;/where&gt;
+&lt;/select&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>set 标签，set 标签⽤于 update 操作，会⾃动根据参数选择⽣成 SQL 语句。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;update id=&#34;update&#34; parameterType=&#34;com.southwind.entity.Account&#34;&gt;
+ update t_account
+ &lt;set&gt;
+ &lt;if test=&#34;username!=null&#34;&gt;
+ username = #{username},
+ &lt;/if&gt;
+ &lt;if test=&#34;password!=null&#34;&gt;
+ password = #{password},
+ &lt;/if&gt;
+ &lt;if test=&#34;age!=0&#34;&gt;
+ age = #{age}
+ &lt;/if&gt;
+ &lt;/set&gt;
+ where id = #{id}
+&lt;/update&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>foreach 标签，foreach 标签可以迭代⽣成⼀系列值，这个标签主要⽤于 SQL 的 in 语句。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;select id=&#34;findByIds&#34; parameterType=&#34;com.southwind.entity.Account&#34;
+resultType=&#34;com.southwind.entity.Account&#34;&gt;
+ select * from t_account
+ &lt;where&gt;
+ &lt;foreach collection=&#34;ids&#34; open=&#34;id in (&#34; close=&#34;)&#34; item=&#34;id&#34;
+separator=&#34;,&#34;&gt;
+ #{id}
+ &lt;/foreach&gt;
+ &lt;/where&gt;
+&lt;/select&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>choose 、when 标签</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;select id=&#34;findByAccount&#34; parameterType=&#34;com.southwind.entity.Account&#34;
+resultType=&#34;com.southwind.entity.Account&#34;&gt;
+ select * from t_account
+ &lt;where&gt;
+ &lt;choose&gt;
+ &lt;when test=&#34;id!=0&#34;&gt;
+ id = #{id}
+ &lt;/when&gt;
+ &lt;when test=&#34;username!=null&#34;&gt;
+ username = #{username}
+ &lt;/when&gt;
+ &lt;when test=&#34;password!=null&#34;&gt;
+ password = #{password}
+ &lt;/when&gt;
+ &lt;when test=&#34;age!=0&#34;&gt;
+ age = #{age}
+ &lt;/when&gt;
+ &lt;/choose&gt;
+ &lt;/where&gt;
+&lt;/select&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>trim 标签，trim 标签中的 prefix 和 suffix 属性会被⽤于⽣成实际的 SQL 语句，会和标签内部的语句进⾏拼接，如
+果语句前后出现了 prefixOverrides 或者 suffixOverrides 属性中指定的值，MyBatis 框架会⾃动将其删
+除。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;select id=&#34;findByAccount&#34; parameterType=&#34;com.southwind.entity.Account&#34;
+resultType=&#34;com.southwind.entity.Account&#34;&gt;
+ select * from t_account
+ &lt;trim prefix=&#34;where&#34; prefixOverrides=&#34;and&#34;&gt;
+ &lt;if test=&#34;id!=0&#34;&gt;
+ id = #{id}
+ &lt;/if&gt;
+ &lt;if test=&#34;username!=null&#34;&gt;
+ and username = #{username}
+ &lt;/if&gt;
+ &lt;if test=&#34;password!=null&#34;&gt;
+ and password = #{password}
+ &lt;/if&gt;
+ &lt;if test=&#34;age!=0&#34;&gt;
+ and age = #{age}
+ &lt;/if&gt;
+ &lt;/trim&gt;
+&lt;/select&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="如何使用逆向工程">如何使用逆向工程？</h3>
+<p>使用 Mybatis Generator 配置如下，实际更复杂的逆向工程的需求可以自己实现。</p>
+<ol>
+<li><code>pom.xml</code> 添加插件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;plugin&gt;
+  &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis-generator-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;1.3.2&lt;/version&gt;
+  &lt;configuration&gt;
+    &lt;!--允许移动生成的文件 --&gt;
+    &lt;verbose&gt;true&lt;/verbose&gt;
+    &lt;!-- 是否覆盖 --&gt;
+    &lt;overwrite&gt;true&lt;/overwrite&gt;
+    &lt;configurationFile&gt;${project.basedir}/generatorConfig.xml&lt;/configurationFile&gt;
+  &lt;/configuration&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;mysql&lt;/groupId&gt;
+      &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+                  &lt;version&gt;8.0.19&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;
+      &lt;artifactId&gt;mybatis-generator-core&lt;/artifactId&gt;
+      &lt;version&gt;1.3.2&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/plugin&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>设置插件配置文件 <code>generatorConfig.xml</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;!DOCTYPE generatorConfiguration
+        PUBLIC &#34;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&#34;
+        &#34;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&#34;&gt;
+&lt;generatorConfiguration&gt;
+    &lt;context id=&#34;testTables&#34; targetRuntime=&#34;MyBatis3&#34;&gt;
+        &lt;commentGenerator&gt;
+            &lt;!-- 是否去除自动生成的注释 true：是 ： false:否 --&gt;
+            &lt;property name=&#34;suppressAllComments&#34; value=&#34;true&#34;/&gt;
+        &lt;/commentGenerator&gt;
+        &lt;!--数据库连接的信息：驱动类、连接地址、用户名、密码 --&gt;
+        &lt;jdbcConnection driverClass=&#34;com.mysql.cj.jdbc.Driver&#34;
+                        connectionURL=&#34;jdbc:mysql://localhost:3306/learn_mybatis?characterEncoding=utf-8&#34;
+                        userId=&#34;root&#34;
+                        password=&#34;root&#34;&gt;
+        &lt;/jdbcConnection&gt;
+
+        &lt;!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+           NUMERIC 类型解析为java.math.BigDecimal --&gt;
+        &lt;javaTypeResolver&gt;
+            &lt;property name=&#34;forceBigDecimals&#34; value=&#34;false&#34;/&gt;
+        &lt;/javaTypeResolver&gt;
+
+        &lt;!-- targetProject:生成POJO类的位置 --&gt;
+        &lt;javaModelGenerator targetPackage=&#34;com.orionpax.learn.entity&#34;
+                            targetProject=&#34;src/main/java&#34;&gt;
+            &lt;!-- enableSubPackages:是否让schema作为包的后缀 --&gt;
+            &lt;property name=&#34;enableSubPackages&#34; value=&#34;false&#34;/&gt;
+            &lt;!-- 从数据库返回的值被清理前后的空格 --&gt;
+            &lt;property name=&#34;trimStrings&#34; value=&#34;true&#34;/&gt;
+        &lt;/javaModelGenerator&gt;
+
+        &lt;!-- targetProject:mapper映射文件生成的位置
+           如果maven工程只是单独的一个工程，targetProject=&#34;src/main/java&#34;
+           若果maven工程是分模块的工程，targetProject=&#34;所属模块的名称&#34;，例如：
+           targetProject=&#34;ecps-manager-mapper&#34;，下同--&gt;
+        &lt;sqlMapGenerator targetPackage=&#34;com.orionpax.learn.mapper&#34;
+                         targetProject=&#34;src/main/java&#34;&gt;
+            &lt;!-- enableSubPackages:是否让schema作为包的后缀 --&gt;
+            &lt;property name=&#34;enableSubPackages&#34; value=&#34;false&#34;/&gt;
+        &lt;/sqlMapGenerator&gt;
+
+        &lt;!-- targetPackage：mapper接口生成的位置 --&gt;
+        &lt;javaClientGenerator type=&#34;XMLMAPPER&#34;
+                             targetPackage=&#34;com.orionpax.learn.mapper&#34;
+                             targetProject=&#34;src/main/java&#34;&gt;
+            &lt;!-- enableSubPackages:是否让schema作为包的后缀 --&gt;
+            &lt;property name=&#34;enableSubPackages&#34; value=&#34;false&#34;/&gt;
+        &lt;/javaClientGenerator&gt;
+
+        &lt;!-- 指定数据库表  多个表示,可用多个table标签--&gt;
+        &lt;table tableName=&#34;far&#34;
+               enableCountByExample=&#34;false&#34;
+               enableUpdateByExample=&#34;false&#34;
+               enableDeleteByExample=&#34;false&#34;
+               enableSelectByExample=&#34;false&#34;
+               selectByExampleQueryId=&#34;false&#34;&gt;
+        &lt;/table&gt;
+        &lt;table tableName=&#34;bar&#34;
+               enableCountByExample=&#34;false&#34;
+               enableUpdateByExample=&#34;false&#34;
+               enableDeleteByExample=&#34;false&#34;
+               enableSelectByExample=&#34;false&#34;
+               selectByExampleQueryId=&#34;false&#34;&gt;
+        &lt;/table&gt;
+    &lt;/context&gt;
+&lt;/generatorConfiguration&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>运行插件</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-04</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://blog.orionpax.top/2020/04/mybatis/" data-title="Mybatis 的使用"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://blog.orionpax.top/2020/04/mybatis/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="http://blog.orionpax.top/2020/04/mybatis/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://blog.orionpax.top/2020/04/mybatis/" data-title="Mybatis 的使用"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://blog.orionpax.top/2020/04/mybatis/" data-title="Mybatis 的使用"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://blog.orionpax.top/2020/04/mybatis/" data-title="Mybatis 的使用" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://blog.orionpax.top/2020/04/mybatis/" data-title="Mybatis 的使用" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://blog.orionpax.top/2020/04/mybatis/" data-title="Mybatis 的使用"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://blog.orionpax.top/2020/04/mybatis/" data-title="Mybatis 的使用"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Trello" data-sharer="trello" data-url="http://blog.orionpax.top/2020/04/mybatis/" data-title="Mybatis 的使用" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2020/03/flutter/" class="prev" rel="prev" title="Flutter 的使用"><i class="fas fa-angle-left fa-fw"></i>Flutter 的使用</a>
+            <a href="/2020/04/angular/" class="next" rel="next" title="Angular 的使用">Angular 的使用<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/OrionPax19970905" target="_blank">OrionPax</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"nW05u87yweVedDRhj6AUgzR1-gzGzoHsz","appKey":"4HgKbiggTv7ocU789S5WO6ov","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"确定不说点什么?","recordIP":true,"visitor":true}},"search":{"algoliaAppID":"1Z7P4N2DNP","algoliaIndex":"OrionPax Blog","algoliaSearchKey":"12b884f5e1e54aeab4cba52aeaf76362","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

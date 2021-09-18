@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>neovim 的使用 - OrionPax 的个人博客</title><meta name="Description" content=""><meta property="og:title" content="neovim 的使用" />
+<meta property="og:description" content="前言 为了更快的速度和很多 neovim 才支持的插件，从 vim 迁移过来了。 基础 Normal 1 2 3 4 5 6 7 8 9 10 11 j : 下移一字符 k : 上移一字符 h : 左移一字符 l : 右移一字符" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.orionpax.top/2020/03/nvim/" />
+<meta property="article:published_time" content="2020-03-12T13:34:31+08:00" />
+<meta property="article:modified_time" content="2020-03-12T13:34:31+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="neovim 的使用"/>
+<meta name="twitter:description" content="前言 为了更快的速度和很多 neovim 才支持的插件，从 vim 迁移过来了。 基础 Normal 1 2 3 4 5 6 7 8 9 10 11 j : 下移一字符 k : 上移一字符 h : 左移一字符 l : 右移一字符"/>
+<meta name="application-name" content="OrionPax 的个人博客">
+<meta name="apple-mobile-web-app-title" content="OrionPax 的个人博客"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.orionpax.top/2020/03/nvim/" /><link rel="prev" href="http://blog.orionpax.top/2020/03/hammerspoon/" /><link rel="next" href="http://blog.orionpax.top/2020/03/http/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "neovim 的使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/blog.orionpax.top\/2020\/03\/nvim\/"
+        },"genre": "posts","keywords": "工具","wordcount":  4639 ,
+        "url": "http:\/\/blog.orionpax.top\/2020\/03\/nvim\/","datePublished": "2020-03-12T13:34:31+08:00","dateModified": "2020-03-12T13:34:31+08:00","publisher": {
+            "@type": "Organization",
+            "name": "OrionPax"},"author": {
+                "@type": "Person",
+                "name": "OrionPax"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/mind-map/"> 导读 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/mind-map/" title="">导读</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">neovim 的使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/OrionPax19970905" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>OrionPax</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-03-12">2020-03-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4639 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/2020/03/nvim/" class="leancloud_visitors" data-flag-title="neovim 的使用">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#基础">基础</a>
+      <ul>
+        <li><a href="#normal">Normal</a></li>
+        <li><a href="#insert">Insert</a></li>
+      </ul>
+    </li>
+    <li><a href="#vim-的四种模式">Vim 的四种模式</a>
+      <ul>
+        <li><a href="#normal-模式">Normal 模式</a></li>
+        <li><a href="#insert-模式">Insert 模式</a></li>
+        <li><a href="#command-模式">Command 模式</a></li>
+        <li><a href="#visual-模式">Visual 模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#vim-多文件操作">Vim 多文件操作</a>
+      <ul>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#相关命令">相关命令</a>
+          <ul>
+            <li><a href="#buffer">Buffer</a></li>
+            <li><a href="#window">Window</a></li>
+            <li><a href="#tab">Tab</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#操作系统剪切板">操作系统剪切板</a></li>
+    <li><a href="#vim-的自动补全">Vim 的自动补全</a></li>
+    <li><a href="#vim-的配置持久化">VIM 的配置持久化</a></li>
+    <li><a href="#快捷键映射">快捷键映射</a></li>
+    <li><a href="#宏">宏</a></li>
+    <li><a href="#配置">配置</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>为了更快的速度和很多 neovim 才支持的插件，从 vim 迁移过来了。</p>
+<h2 id="基础">基础</h2>
+<h3 id="normal">Normal</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">j             : 下移一字符
+k             : 上移一字符
+h             : 左移一字符
+l             : 右移一字符
+w(word)/W     : 移动到下一个单词开头（WORD 将空白符分割的识别为单词）
+b(backword)/B : 回到上一个单词开头
+gg            : 移动到文件开头
+G             : 移动到文件结尾
+zz            : 把光标行置为屏幕中间
+*             : 当前单词向前匹配
+#             : 当前单词向后匹配
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">:/ : 向后搜索(n/N : 跳转到下一个/上一个匹配)
+:? : 向前搜索
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">x       : 删除一个字符
+daw     : 删除一个单词
+[num]dd : 删除 num 行
+r       : 修改一个字符
+~       : 修改大小写
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">v : 字符选择
+V : 行选择
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="insert">Insert</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ctrl + n : 单词补全
+ctrl + h : 删除上一个字符
+ctrl + w : 删除上一个单词
+ctrl + u : 删除当前行插入位置之前的内容
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="vim-的四种模式">Vim 的四种模式</h2>
+<h3 id="normal-模式">Normal 模式</h3>
+<ul>
+<li>Normal 模式可以进行各种命令操作和移动</li>
+<li>大部分情况下你是浏览而不是编辑，所以 Vim 默认是 Normal 模式</li>
+</ul>
+<h3 id="insert-模式">Insert 模式</h3>
+<ul>
+<li>Insert 模式和普通编辑器差不多用来做文本输入</li>
+<li>使用 i(insert)、a(append)、o(open a line below)、I、A、O、gi(回到最后一次编辑的位置) 进入 Insert 模式</li>
+<li>Esc 从 Insert 模式退回到 Normal 模式</li>
+</ul>
+<h3 id="command-模式">Command 模式</h3>
+<ul>
+<li>Command 模式用来执行 Vim 命令</li>
+</ul>
+<h3 id="visual-模式">Visual 模式</h3>
+<ul>
+<li>Visual 模式用来选择 要进行操作的内容</li>
+</ul>
+<h2 id="vim-多文件操作">Vim 多文件操作</h2>
+<h3 id="概念">概念</h3>
+<ul>
+<li>Buffer 指打开的一个文件的内存缓冲区</li>
+<li>Window 是 Buffer 的可视化分割区域</li>
+<li>Tab 可以组织窗口作为一个工作区</li>
+</ul>
+<h3 id="相关命令">相关命令</h3>
+<h4 id="buffer">Buffer</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">:ls   : 列举当前缓冲区
+:b&lt;n&gt; : 跳转到第 n 个缓冲区
+:bpre、bnext、bfirst、blast
+:b &lt;buffer_name&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="window">Window</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;Ctrl + w&gt;s         : 水平分割
+&lt;Ctrl + w&gt;v         : 垂直分割
+&lt;Ctrl + w&gt;w         : 窗口切换
+&lt;Ctrl + w&gt;[h,j,k,l] : 窗口切换
+&lt;Ctrl + w&gt;[H,J,K,L] : 窗口移动
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="tab">Tab</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">:tabe &lt;filename&gt; 在新标签页中打开文件
+&lt;Ctrl + w&gt;T    : 把当前窗口移动到新标签页
+:tabc[lose]    : 关闭当前页及其中所有窗口
+:tabo[nly]     : 自保留活动标签页，关闭其它
+:tabn[ext]     : 切换标签页
+gt             : 切换标签页
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="操作系统剪切板">操作系统剪切板</h2>
+<p>Vim 中使用 delete yank put 操作时会使用寄存器保存内容，不指定的话就是无名寄存器和寄存器 0。其它还有 a-z 寄存器。+寄存器代表系统剪切板。复制到系统剪切板可以<code>&quot;+y</code>,从系统剪切板粘贴为<code>&quot;+p</code>。</p>
+<h2 id="vim-的自动补全">Vim 的自动补全</h2>
+<ul>
+<li><code>Ctrl + n</code>/<code>Ctrl + p</code> : 补全单词</li>
+<li><code>Ctrl + x</code>/<code>Ctrl + f</code> : 补全文件名</li>
+<li><code>Ctrl + x</code>/<code>Ctrl + o</code> : 补全代码(需要插件)</li>
+</ul>
+<h2 id="vim-的配置持久化">VIM 的配置持久化</h2>
+<p>Linux/Unix 下新建一个隐藏文件 <code>vim ~/.vimrc</code><br>
+Windows 下使用<code>$MYVIMRC</code>来定位配置文件位置<br>
+NeoVIM 的配置文件的位置应为<code>~/AppData/Local/nvim/init.vim</code> 或 <code>~/.config/nvim/init.vim</code>;</p>
+<h2 id="快捷键映射">快捷键映射</h2>
+<p><code>[n(normal生效)/v(visual生效)/i(insert生效)][nore(非递归映射)]map &lt;target_key_sequence&gt; &lt;source_key_sequence&gt;</code> : 创建源操作映射为目标操作，比如<code>map - x</code>，然后按<code>-</code>就会删除字符</p>
+<h2 id="宏">宏</h2>
+<p>使用<code>q&lt;register&gt;</code>开始录制，可以进行 insert 和 normal 模式下的正常操作，<code>q</code>结束录制。使用<code>@&lt;register&gt;</code>在当前行执行宏命令。使用 V 选中多行:进入命令模式输入<code>normal @&lt;register&gt;</code>在选中行执行宏命令。</p>
+<h2 id="配置">配置</h2>
+<p>Show You Code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span><span class="lnt">333
+</span><span class="lnt">334
+</span><span class="lnt">335
+</span><span class="lnt">336
+</span><span class="lnt">337
+</span><span class="lnt">338
+</span><span class="lnt">339
+</span><span class="lnt">340
+</span><span class="lnt">341
+</span><span class="lnt">342
+</span><span class="lnt">343
+</span><span class="lnt">344
+</span><span class="lnt">345
+</span><span class="lnt">346
+</span><span class="lnt">347
+</span><span class="lnt">348
+</span><span class="lnt">349
+</span><span class="lnt">350
+</span><span class="lnt">351
+</span><span class="lnt">352
+</span><span class="lnt">353
+</span><span class="lnt">354
+</span><span class="lnt">355
+</span><span class="lnt">356
+</span><span class="lnt">357
+</span><span class="lnt">358
+</span><span class="lnt">359
+</span><span class="lnt">360
+</span><span class="lnt">361
+</span><span class="lnt">362
+</span><span class="lnt">363
+</span><span class="lnt">364
+</span><span class="lnt">365
+</span><span class="lnt">366
+</span><span class="lnt">367
+</span><span class="lnt">368
+</span><span class="lnt">369
+</span><span class="lnt">370
+</span><span class="lnt">371
+</span><span class="lnt">372
+</span><span class="lnt">373
+</span><span class="lnt">374
+</span><span class="lnt">375
+</span><span class="lnt">376
+</span><span class="lnt">377
+</span><span class="lnt">378
+</span><span class="lnt">379
+</span><span class="lnt">380
+</span><span class="lnt">381
+</span><span class="lnt">382
+</span><span class="lnt">383
+</span><span class="lnt">384
+</span><span class="lnt">385
+</span><span class="lnt">386
+</span><span class="lnt">387
+</span><span class="lnt">388
+</span><span class="lnt">389
+</span><span class="lnt">390
+</span><span class="lnt">391
+</span><span class="lnt">392
+</span><span class="lnt">393
+</span><span class="lnt">394
+</span><span class="lnt">395
+</span><span class="lnt">396
+</span><span class="lnt">397
+</span><span class="lnt">398
+</span><span class="lnt">399
+</span><span class="lnt">400
+</span><span class="lnt">401
+</span><span class="lnt">402
+</span><span class="lnt">403
+</span><span class="lnt">404
+</span><span class="lnt">405
+</span><span class="lnt">406
+</span><span class="lnt">407
+</span><span class="lnt">408
+</span><span class="lnt">409
+</span><span class="lnt">410
+</span><span class="lnt">411
+</span><span class="lnt">412
+</span><span class="lnt">413
+</span><span class="lnt">414
+</span><span class="lnt">415
+</span><span class="lnt">416
+</span><span class="lnt">417
+</span><span class="lnt">418
+</span><span class="lnt">419
+</span><span class="lnt">420
+</span><span class="lnt">421
+</span><span class="lnt">422
+</span><span class="lnt">423
+</span><span class="lnt">424
+</span><span class="lnt">425
+</span><span class="lnt">426
+</span><span class="lnt">427
+</span><span class="lnt">428
+</span><span class="lnt">429
+</span><span class="lnt">430
+</span><span class="lnt">431
+</span><span class="lnt">432
+</span><span class="lnt">433
+</span><span class="lnt">434
+</span><span class="lnt">435
+</span><span class="lnt">436
+</span><span class="lnt">437
+</span><span class="lnt">438
+</span><span class="lnt">439
+</span><span class="lnt">440
+</span><span class="lnt">441
+</span><span class="lnt">442
+</span><span class="lnt">443
+</span><span class="lnt">444
+</span><span class="lnt">445
+</span><span class="lnt">446
+</span><span class="lnt">447
+</span><span class="lnt">448
+</span><span class="lnt">449
+</span><span class="lnt">450
+</span><span class="lnt">451
+</span><span class="lnt">452
+</span><span class="lnt">453
+</span><span class="lnt">454
+</span><span class="lnt">455
+</span><span class="lnt">456
+</span><span class="lnt">457
+</span><span class="lnt">458
+</span><span class="lnt">459
+</span><span class="lnt">460
+</span><span class="lnt">461
+</span><span class="lnt">462
+</span><span class="lnt">463
+</span><span class="lnt">464
+</span><span class="lnt">465
+</span><span class="lnt">466
+</span><span class="lnt">467
+</span><span class="lnt">468
+</span><span class="lnt">469
+</span><span class="lnt">470
+</span><span class="lnt">471
+</span><span class="lnt">472
+</span><span class="lnt">473
+</span><span class="lnt">474
+</span><span class="lnt">475
+</span><span class="lnt">476
+</span><span class="lnt">477
+</span><span class="lnt">478
+</span><span class="lnt">479
+</span><span class="lnt">480
+</span><span class="lnt">481
+</span><span class="lnt">482
+</span><span class="lnt">483
+</span><span class="lnt">484
+</span><span class="lnt">485
+</span><span class="lnt">486
+</span><span class="lnt">487
+</span><span class="lnt">488
+</span><span class="lnt">489
+</span><span class="lnt">490
+</span><span class="lnt">491
+</span><span class="lnt">492
+</span><span class="lnt">493
+</span><span class="lnt">494
+</span><span class="lnt">495
+</span><span class="lnt">496
+</span><span class="lnt">497
+</span><span class="lnt">498
+</span><span class="lnt">499
+</span><span class="lnt">500
+</span><span class="lnt">501
+</span><span class="lnt">502
+</span><span class="lnt">503
+</span><span class="lnt">504
+</span><span class="lnt">505
+</span><span class="lnt">506
+</span><span class="lnt">507
+</span><span class="lnt">508
+</span><span class="lnt">509
+</span><span class="lnt">510
+</span><span class="lnt">511
+</span><span class="lnt">512
+</span><span class="lnt">513
+</span><span class="lnt">514
+</span><span class="lnt">515
+</span><span class="lnt">516
+</span><span class="lnt">517
+</span><span class="lnt">518
+</span><span class="lnt">519
+</span><span class="lnt">520
+</span><span class="lnt">521
+</span><span class="lnt">522
+</span><span class="lnt">523
+</span><span class="lnt">524
+</span><span class="lnt">525
+</span><span class="lnt">526
+</span><span class="lnt">527
+</span><span class="lnt">528
+</span><span class="lnt">529
+</span><span class="lnt">530
+</span><span class="lnt">531
+</span><span class="lnt">532
+</span><span class="lnt">533
+</span><span class="lnt">534
+</span><span class="lnt">535
+</span><span class="lnt">536
+</span><span class="lnt">537
+</span><span class="lnt">538
+</span><span class="lnt">539
+</span><span class="lnt">540
+</span><span class="lnt">541
+</span><span class="lnt">542
+</span><span class="lnt">543
+</span><span class="lnt">544
+</span><span class="lnt">545
+</span><span class="lnt">546
+</span><span class="lnt">547
+</span><span class="lnt">548
+</span><span class="lnt">549
+</span><span class="lnt">550
+</span><span class="lnt">551
+</span><span class="lnt">552
+</span><span class="lnt">553
+</span><span class="lnt">554
+</span><span class="lnt">555
+</span><span class="lnt">556
+</span><span class="lnt">557
+</span><span class="lnt">558
+</span><span class="lnt">559
+</span><span class="lnt">560
+</span><span class="lnt">561
+</span><span class="lnt">562
+</span><span class="lnt">563
+</span><span class="lnt">564
+</span><span class="lnt">565
+</span><span class="lnt">566
+</span><span class="lnt">567
+</span><span class="lnt">568
+</span><span class="lnt">569
+</span><span class="lnt">570
+</span><span class="lnt">571
+</span><span class="lnt">572
+</span><span class="lnt">573
+</span><span class="lnt">574
+</span><span class="lnt">575
+</span><span class="lnt">576
+</span><span class="lnt">577
+</span><span class="lnt">578
+</span><span class="lnt">579
+</span><span class="lnt">580
+</span><span class="lnt">581
+</span><span class="lnt">582
+</span><span class="lnt">583
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&#34; ================================================================
+&#34; Created by OrionPax on 2019/08/26
+&#34; Last Modified: 2020/03/12
+&#34;
+&#34; 1. 基础设置
+&#34;   - Editor behavior
+&#34;   - Terminal Behaviors
+&#34; 2. 插件设置
+&#34;   - 移动
+&#34;   - 编辑
+&#34;   - Markdown
+&#34;   - 版本控制
+&#34;   - 增强
+&#34;   - 配置
+&#34; 3. 按键映射
+&#34;   - 移动
+&#34;   - 编辑
+&#34;   - Tab
+&#34;   - Screen
+&#34;   - Markdown
+&#34; ================================================================
+
+&#34; ================================================================
+&#34; 1. 基础设置
+&#34; ================================================================
+
+&#34; ------------------------ Editor behavior ------------------------
+
+&#34; 设置显示行号
+set number
+&#34; 设置相对行号
+set relativenumber
+&#34; 设置光标下划线
+set cursorline
+&#34; 一个tab等于多少个空格，当 expandtab的情况下，会影响在插入模式下按下&lt;tab&gt;键输入的空格，以及真正的 \t 用多少个空格显示
+set tabstop=2
+&#34; 将 tab 转层空格
+set expandtab
+&#34; noexpandtab 的情况下，tabstop 只会影响 \t 显示多少个空格（因为插入模式下按 &lt;tab&gt; 将会输入一个字符 \t
+&#34; set noexpandtab
+&#34; 使用 &gt;&gt; &lt;&lt; 或 == 来缩进代码的时候补出的空格数。这个值也会影响 autoindent 自动缩进的值。
+set shiftwidth=2
+&#34; insert 模式下，一个 tab 键按下后，展示成几个空格
+set softtabstop=2
+&#34; 设置自动缩进
+set autoindent
+&#34; 显示不可见字符
+set list
+&#34; 设置 tab 和 空白符的显示方式
+set listchars=tab:\|\ ,trail:▫
+&#34; 开启真彩色支持
+set termguicolors
+&#34; 保持光标上下的最小行数
+set scrolloff=4
+&#34; 在按下Esc后等待多长时间来决定是否还有输入.默认值为 1000 毫秒
+set ttimeoutlen=0
+&#34; 设置键盘映射没有超时
+set notimeout
+&#34; 设置需要折行
+set wrap
+&#34; 设置 textwidth = 0 的话，就不会自动换行了，默认是&#34; 78，超过这个数量的话按空格会自动换行
+set tw=0
+&#34; 设置缩进方式
+set indentexpr=
+&#34; 启用折叠 zc/zo 折叠和取消折叠
+set foldenable
+&#34; 缩进折叠，相同的缩进中代码会被折叠
+set foldmethod=indent
+&#34; 设置折叠级别
+set foldlevel=99
+&#34; 设置格式化选项
+set formatoptions-=tc
+&#34; 设置新分割窗口在右边
+set splitright
+&#34; 设置新分割窗口在下边
+set splitbelow
+&#34; 不在底部显示当前模式
+set noshowmode
+&#34; 命令模式下，在底部显示，当前键入的指令
+set showcmd
+&#34; 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
+set wildmenu
+&#34; 搜索时忽略大小写
+set ignorecase
+&#34; 输入大写字符时大小写敏感
+set smartcase
+&#34; 执行替换命令时将修改结果放到一个单独的窗口，执行 Esc 取消
+set inccommand=split
+&#34; 设置 ctrl + n 自动补全的配置
+set completeopt=longest,noinsert,menuone,noselect,preview
+&#34; 设置滚动屏幕更快
+set ttyfast
+&#34; 设置滚动屏幕更快
+set lazyredraw
+&#34; 出错时发出视觉提醒，通常是屏幕闪烁
+set visualbell
+&#34; 设置文件备份
+silent !mkdir -p ~/.config/nvim/tmp/backup
+silent !mkdir -p ~/.config/nvim/tmp/undo
+set backupdir=~/.config/nvim/tmp/backup,.
+set directory=~/.config/nvim/tmp/backup,.
+if has(&#39;persistent_undo&#39;)
+	set undofile
+	set undodir=~/.config/nvim/tmp/undo,.
+endif
+&#34; 隐藏标尺
+&#34; set colorcolumn=80
+&#34; 根据光标位置自动更新高亮 tag 的间隔时间，单位为毫秒
+set updatetime=1000
+&#34; 普通模式光标的可移动位置，设置 onemore 可以移动到最后一个字符后
+set virtualedit=block
+&#34; 打开文件跳转到最后编辑时的光标位置
+au BufReadPost * if line(&#34;&#39;\&#34;&#34;) &gt; 1 &amp;&amp; line(&#34;&#39;\&#34;&#34;) &lt;= line(&#34;$&#34;) | exe &#34;normal! g&#39;\&#34;&#34; | endif
+
+&#34; ------------------------ Terminal Behaviors ------------------------
+
+let g:neoterm_autoscroll = 1
+autocmd TermOpen term://* startinsert
+tnoremap &lt;C-N&gt; &lt;C-\&gt;&lt;C-N&gt;
+tnoremap &lt;C-O&gt; &lt;C-\&gt;&lt;C-N&gt;&lt;C-O&gt;
+let g:terminal_color_0  = &#39;#000000&#39;
+let g:terminal_color_1  = &#39;#FF5555&#39;
+let g:terminal_color_2  = &#39;#50FA7B&#39;
+let g:terminal_color_3  = &#39;#F1FA8C&#39;
+let g:terminal_color_4  = &#39;#BD93F9&#39;
+let g:terminal_color_5  = &#39;#FF79C6&#39;
+let g:terminal_color_6  = &#39;#8BE9FD&#39;
+let g:terminal_color_7  = &#39;#BFBFBF&#39;
+let g:terminal_color_8  = &#39;#4D4D4D&#39;
+let g:terminal_color_9  = &#39;#FF6E67&#39;
+let g:terminal_color_10 = &#39;#5AF78E&#39;
+let g:terminal_color_11 = &#39;#F4F99D&#39;
+let g:terminal_color_12 = &#39;#CAA9FA&#39;
+let g:terminal_color_13 = &#39;#FF92D0&#39;
+let g:terminal_color_14 = &#39;#9AEDFE&#39;
+augroup TermHandling
+	autocmd!
+	&#34; Turn off line numbers, listchars, auto enter insert mode and map esc to
+	&#34; exit insert mode
+	autocmd TermOpen * setlocal listchars= nonumber norelativenumber
+				\ | startinsert
+	autocmd FileType fzf call LayoutTerm(0.6, &#39;horizontal&#39;)
+augroup END
+
+function! LayoutTerm(size, orientation) abort
+	let timeout = 16.0
+	let animation_total = 120.0
+	let timer = {
+				\ &#39;size&#39;: a:size,
+				\ &#39;step&#39;: 1,
+				\ &#39;steps&#39;: animation_total / timeout
+				\}
+
+	if a:orientation == &#39;horizontal&#39;
+		resize 1
+		function! timer.f(timer)
+			execute &#39;resize &#39; . string(&amp;lines * self.size * (self.step / self.steps))
+			let self.step += 1
+		endfunction
+	else
+		vertical resize 1
+		function! timer.f(timer)
+			execute &#39;vertical resize &#39; . string(&amp;columns * self.size * (self.step / self.steps))
+			let self.step += 1
+		endfunction
+	endif
+	call timer_start(float2nr(timeout), timer.f, {&#39;repeat&#39;: float2nr(timer.steps)})
+endfunction
+
+&#34; Open autoclosing terminal, with optional size and orientation
+function! OpenTerm(cmd, ...) abort
+	let orientation = get(a:, 2, &#39;horizontal&#39;)
+	if orientation == &#39;horizontal&#39;
+		new | wincmd J
+	else
+		vnew | wincmd L
+	endif
+	call LayoutTerm(get(a:, 1, 0.5), orientation)
+	call termopen(a:cmd, {&#39;on_exit&#39;: {j,c,e -&gt; execute(&#39;if c == 0 | close | endif&#39;)}})
+endfunction
+
+&#34; ================================================================
+&#34; 2. 插件设置
+&#34; ================================================================
+
+call plug#begin(&#39;~/.config/nvim/plugged&#39;)
+
+&#34; ---------------------------- 显示 -----------------------------
+
+&#34; 展示开始画面，显示最近编辑过的文件
+Plug &#39;mhinz/vim-startify&#39;
+
+&#34; 将当前光标下的字符串，在文件所有用到的位置，标注展示
+Plug &#39;rrethy/vim-illuminate&#39;
+
+&#34; 在命令栏显示缓冲区列表
+Plug &#39;bling/vim-bufferline&#39;
+
+&#34; 一个好看的底部状态栏
+Plug &#39;theniceboy/eleline.vim&#39;
+
+&#34; 一个好看的配色方案
+Plug &#39;ajmwagar/vim-deus&#39;
+
+&#34; 每个变量都有不同的颜色
+&#34; &lt;LEADER&gt;sh 切换开启关闭
+Plug &#39;jaxbot/semantic-highlight.vim&#39;
+
+&#34; 显示颜色代码的真实颜色
+Plug &#39;norcalli/nvim-colorizer.lua&#39;
+
+&#34; 为括号添加不同的颜色
+Plug &#39;luochen1990/rainbow&#39;
+
+&#34; 更好看的 Tab Line
+Plug &#39;mg979/vim-xtabline&#39;
+
+&#34; ---------------------------- 移动 -----------------------------
+
+&#34; 全文快速移动，
+&#34; &lt;LEADER&gt;&lt;LEADER&gt;s{char} 搜索跳转
+&#34; &lt;LEADER&gt;&lt;LEADER&gt;w 跳转到后面的单词首字母
+&#34; &lt;LEADER&gt;&lt;LEADER&gt;b 跳转到前面的单词首字母
+Plug &#39;easymotion/vim-easymotion&#39;
+
+&#34; 标签
+&#34; &lt;C-B&gt;              : 显示所有标签
+&#34; &lt;LEADER&gt;bt         : 打标签
+&#34; &lt;LEADER&gt;ba         : 加批注
+&#34; :ClearBookmarks    : 清除缓冲区文件所有标签
+&#34; :ClearAllBookmarks : 清除所有标签
+Plug &#39;MattesGroeger/vim-bookmarks&#39;
+
+&#34; 快速文件搜索
+&#34; :Files [PATH] : 搜索文件
+&#34; :GFiles [OPTS] : 搜索 Git 文件
+&#34; :Buffers : 打开缓冲区
+&#34; :History :  最近访问文件
+&#34; :Colors : Colors 切换
+Plug &#39;junegunn/fzf&#39;, {&#39;dir&#39;:&#39;~/.fzf&#39;,&#39;do&#39;: { -&gt; fzf#install() }}
+Plug &#39;junegunn/fzf.vim&#39;
+
+&#34; 在 NVIM 中使用 Ranger
+&#34; &lt;C-F&gt; 打开 Ragner
+Plug &#39;francoiscabrol/ranger.vim&#39;
+
+&#34; Plug &#39;liuchengxu/vista.vim&#39;
+
+&#34; ---------------------------- 编辑 -----------------------------
+
+&#34; 表格对齐，使用命令 Tabularize
+&#34; Shift + v 选中多行，使用:&#39;&lt;,&#39;&gt; Tabularize/{string} 按等号、冒号、表格对齐文本。
+Plug &#39;godlygeek/tabular&#39;, { &#39;on&#39;: &#39;Tabularize&#39; }
+
+&#34; 成对编辑
+&#34; ys iw {char} 增加
+&#34; cs {oldChar} {newChat} 修改
+&#34; ds {char} 删除
+Plug &#39;tpope/vim-surround&#39;
+
+&#34; 文本替换
+&#34; :Far {pattern} {replace-with} {file-mask} [params] : 搜索并替换，使用 t 选择修改内容
+&#34; :F {pattern} {file-mask} [params] : 搜索
+&#34; :Fardo [params] : 确认修改
+Plug &#39;brooth/far.vim&#39;
+
+&#34; 中文排版
+&#34; :Pangu
+Plug &#39;hotoo/pangu.vim&#39;
+
+&#34; 注释
+&#34; &#34; 选中 gc、gcc
+Plug &#39;tpope/vim-commentary&#39;
+
+&#34; 代码片段
+&#34; &lt;C-J&gt; 使用代码片段/跳转到下一占位符
+&#34; &lt;C-K&gt; 跳转到上一占位符
+Plug &#39;SirVer/ultisnips&#39;
+Plug &#39;honza/vim-snippets&#39;
+
+&#34; 成对符号自动补全
+Plug &#39;jiangmiao/auto-pairs&#39;
+
+&#34; 使用 + - 放大缩小选中区域
+Plug &#39;terryma/vim-expand-region&#39;
+
+&#34; &lt;LEADER&gt;ssip 替换当前段落中光标下方的单词
+Plug &#39;svermeulen/vim-subversive&#39;
+
+&#34; 格式化
+&#34; :Prettier 格式化代码
+Plug &#39;prettier/vim-prettier&#39;, {
+  \ &#39;do&#39;: &#39;yarn install&#39;,
+  \ &#39;for&#39;: [&#39;javascript&#39;, &#39;typescript&#39;, &#39;css&#39;, &#39;less&#39;, &#39;scss&#39;, &#39;json&#39;, &#39;graphql&#39;, &#39;markdown&#39;, &#39;vue&#39;, &#39;yaml&#39;, &#39;html&#39;] }
+
+&#34; -------------------------- 文件类型支持 -------------------------
+
+&#34; JSON 高亮
+Plug &#39;elzr/vim-json&#39;
+
+&#34; JavaScript 高亮
+Plug &#39;pangloss/vim-javascript&#39;, { &#39;for&#39;: [&#39;vim-plug&#39;, &#39;php&#39;, &#39;html&#39;, &#39;javascript&#39;, &#39;css&#39;, &#39;less&#39;] }
+Plug &#39;yuezk/vim-js&#39;, { &#39;for&#39;: [&#39;vim-plug&#39;, &#39;php&#39;, &#39;html&#39;, &#39;javascript&#39;, &#39;css&#39;, &#39;less&#39;] }
+
+&#34; JSX 高亮
+Plug &#39;MaxMEllon/vim-jsx-pretty&#39;, { &#39;for&#39;: [&#39;vim-plug&#39;, &#39;php&#39;, &#39;html&#39;, &#39;javascript&#39;, &#39;css&#39;, &#39;less&#39;] }
+
+&#34; Markdown
+&#34; :MarkdownPreview
+Plug &#39;iamcco/markdown-preview.nvim&#39;, { &#39;do&#39;: &#39;cd app &amp; yarn install&#39;,&#39;for&#39; :[&#39;markdown&#39;, &#39;vim-plug&#39;]}
+
+&#34; 生成TOC
+&#34; :GenTocMarked
+Plug &#39;mzlogin/vim-markdown-toc&#39;, { &#39;for&#39;: [&#39;gitignore&#39;, &#39;markdown&#39;] }
+
+&#34; 无序、有序列表自动补齐
+Plug &#39;theniceboy/bullets.vim&#39;
+
+&#34; ---------------------------- 版本控制 --------------------------
+
+&#34; Git 支持
+&#34; &lt;C-G&gt; 仅显示修改代码段，其他折叠
+&#34; &lt;LEADER&gt;gp 展示修改内容
+&#34; &lt;LEADER&gt;gj 跳转到下一处修改
+&#34; &lt;LEADER&gt;gk 跳转到上一处修改
+Plug &#39;airblade/vim-gitgutter&#39;
+
+&#34; :FzfGitignore
+&#34; 从 https://www.gitignore.io/ 上创建 .gitignore 文件
+Plug &#39;fszymanski/fzf-gitignore&#39;, { &#39;do&#39;: &#39;:UpdateRemotePlugins&#39; }
+
+&#34; 本地修改历史
+&#34; &lt;C-U&gt; 打开本地文件修改历史
+Plug &#39;mbbill/undotree&#39;
+
+&#34; ------------------------- 其他编辑器增强 ------------------------------
+
+&#34; 输入 &#34; 时显示寄存器内容
+Plug &#39;junegunn/vim-peekaboo&#39;
+&#34; Plug &#39;neoclide/coc.nvim&#39;, {&#39;branch&#39;: &#39;release&#39;}
+
+&#34; VIM 终端增强
+Plug &#39;wincent/terminus&#39;
+
+&#34; 向其他 VIM 插件添加文件类型的符号
+Plug &#39;ryanoasis/vim-devicons&#39;
+
+call plug#end()
+
+&#34; ---------------------------- 配置 ------------------------------
+
+&#34; MarkdownPreview
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = &#39;&#39;
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = &#39;&#39;
+let g:mkdp_preview_options = {
+			\ &#39;mkit&#39;: {},
+			\ &#39;katex&#39;: {},
+			\ &#39;uml&#39;: {},
+			\ &#39;maid&#39;: {},
+			\ &#39;disable_sync_scroll&#39;: 0,
+			\ &#39;sync_scroll_type&#39;: &#39;middle&#39;,
+			\ &#39;hide_yaml_meta&#39;: 1
+			\ }
+let g:mkdp_markdown_css = &#39;&#39;
+let g:mkdp_highlight_css = &#39;&#39;
+let g:mkdp_port = &#39;&#39;
+let g:mkdp_page_title = &#39;「${name}」&#39;
+
+&#34; GitGutter
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+
+&#34; 设置 deus 配色
+colorscheme deus
+
+&#34; semantic-highlight
+autocmd BufRead * :SemanticHighlightToggle
+
+&#34; nvim-colorizer 显示 #FEDC56 这种颜色字符的真实颜色
+lua require&#39;colorizer&#39;.setup()
+
+&#34; ranger.vim
+let g:ranger_map_keys = 0
+
+&#34; Vista.vim
+&#34; noremap &lt;silent&gt; T :Vista!!&lt;CR&gt;
+&#34; let g:vista_icon_indent = [&#34;╰─▸ &#34;, &#34;├─▸ &#34;]
+&#34; let g:vista_default_executive = &#39;ctags&#39;
+&#34; let g:vista_fzf_preview = [&#39;right:50%&#39;]
+&#34; let g:vista#renderer#enable_icon = 1
+&#34; let g:vista#renderer#icons = {
+&#34; \   &#34;function&#34;: &#34;\uf794&#34;,
+&#34; \   &#34;variable&#34;: &#34;\uf71b&#34;,
+&#34; \  }
+&#34; function! NearestMethodOrFunction() abort
+&#34;		return get(b:, &#39;vista_nearest_method_or_function&#39;, &#39;&#39;)
+&#34; endfunction
+&#34; set statusline+=%{NearestMethodOrFunction()}
+&#34; autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+&#34; Ultisnips
+let g:tex_flavor = &#34;latex&#34;
+let g:UltiSnipsSnippetDirectories = [$HOME.&#39;/.config/nvim/my-ultisnips/&#39;, &#39;UltiSnips&#39;]
+
+&#34; Undotree
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+
+&#34; vim-bookmarks
+let g:bookmark_no_default_key_mappings = 1
+let g:bookmark_auto_save = 1
+let g:bookmark_highlight_lines = 1
+let g:bookmark_center = 1
+let g:bookmark_auto_close = 1
+
+&#34; rainbow
+let g:rainbow_active = 1
+
+&#34; xtabline
+let g:xtabline_settings = {}
+let g:xtabline_settings.enable_mappings = 0
+let g:xtabline_settings.tabline_modes = [&#39;tabs&#39;, &#39;buffers&#39;]
+let g:xtabline_settings.enable_persistance = 0
+let g:xtabline_settings.last_open_first = 1
+
+
+&#34; ================================================================
+&#34; 3. 按键映射
+&#34; ================================================================
+
+let mapleader=&#34; &#34;
+&#34; ---------------------------- 移动 ------------------------------
+
+&#34; Ctrl + JK 快速移动
+nnoremap &lt;S-J&gt; 5j
+nnoremap &lt;S-K&gt; 5k
+
+&#34; ---------------------------- 编辑 ------------------------------
+
+&#34; 保存并格式化
+nnoremap &lt;C-S&gt; :w&lt;cr&gt;h
+inoremap &lt;C-S&gt; &lt;Esc&gt;:w&lt;cr&gt;i
+autocmd Filetype markdown nnoremap &lt;C-S&gt; :Prettier&lt;Esc&gt;:w&lt;cr&gt;h
+autocmd Filetype markdown inoremap &lt;C-S&gt; &lt;Esc&gt; :Prettier&lt;Esc&gt;:w&lt;cr&gt;i
+
+&#34; 空格转 Tab
+nnoremap stt :%s/    /\t/g
+vnoremap stt :s/    /\t/g
+
+&#34; Tab 转空格
+nnoremap tts :%s/\t/    /g
+vnoremap tts :s/\t/    /g
+
+&#34; 普通模式按一下 &lt;/&gt; 缩进
+nnoremap &lt; &lt;&lt;
+nnoremap &gt; &gt;&gt;
+
+&#34; 禁用 s 键
+noremap s &lt;nop&gt;
+
+&#34; ---------------------------- Tab ------------------------------
+
+&#34; 创建 Tab
+noremap tab :tabe&lt;CR&gt;
+
+&#34; &lt;LEADER&gt;+数字键 切换tab
+noremap &lt;silent&gt;&lt;LEADER&gt;1 1gt&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;2 2gt&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;3 3gt&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;4 4gt&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;5 5gt&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;6 6gt&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;7 7gt&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;8 8gt&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;9 9gt&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;0 10gt&lt;cr&gt;
+
+&#34; --------------------------- Buffers -----------------------------
+
+&#34; &lt;LEADER&gt;&lt;LEADER&gt;+数字键 切换 Buffers
+noremap &lt;silent&gt;&lt;LEADER&gt;&lt;LEADER&gt;1 :b1&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;&lt;LEADER&gt;2 :b2&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;&lt;LEADER&gt;3 :b3&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;&lt;LEADER&gt;4 :b4&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;&lt;LEADER&gt;5 :b5&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;&lt;LEADER&gt;6 :b6&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;&lt;LEADER&gt;7 :b7&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;&lt;LEADER&gt;8 :b8&lt;cr&gt;
+noremap &lt;silent&gt;&lt;LEADER&gt;&lt;LEADER&gt;9 :b9&lt;cr&gt;
+
+&#34; ---------------------------- Screen ------------------------------
+
+&#34; sh / sv 分屏
+noremap sh :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;
+noremap sv :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;:set splitright&lt;CR&gt;
+
+&#34; 移动分屏线
+noremap &lt;up&gt; :res +5&lt;CR&gt;
+noremap &lt;down&gt; :res -5&lt;CR&gt;
+noremap &lt;left&gt; :vertical resize-5&lt;CR&gt;
+noremap &lt;right&gt; :vertical resize+5&lt;CR&gt;
+
+&#34; 分屏 &lt;LEADER&gt; + h/j/k/l 屏幕间切换
+nnoremap &lt;LEADER&gt;h &lt;C-W&gt;h
+nnoremap &lt;LEADER&gt;j &lt;C-W&gt;j
+nnoremap &lt;LEADER&gt;k &lt;C-W&gt;k
+nnoremap &lt;LEADER&gt;l &lt;C-W&gt;l
+
+&#34; ---------------------------- Markdown ------------------------------
+
+&#34; 使用 Snippets
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;1 #&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;2 ##&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;3 ###&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;4 ####&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;5 #####&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;f &lt;Esc&gt;/&lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;&#34;_c4l
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;w &lt;Esc&gt;/ &lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;&#34;_c5l&lt;CR&gt;
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;l ---&lt;Enter&gt;&lt;Enter&gt;
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;b **** &lt;++&gt;&lt;Esc&gt;F*hi
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;w `` &lt;++&gt;&lt;Esc&gt;F`i
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;c ```&lt;Enter&gt;&lt;++&gt;&lt;Enter&gt;```&lt;Enter&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;4kA
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;p ![](&lt;++&gt;) &lt;++&gt;&lt;Esc&gt;F[a
+&#34; autocmd Filetype markdown inoremap &lt;buffer&gt; &lt;LEADER&gt;a [](&lt;++&gt;) &lt;++&gt;&lt;Esc&gt;F[a
+
+&#34; ---------------------------- 插件 ------------------------------
+
+&#34; semantic-highlight
+nnoremap &lt;LEADER&gt;sh :SemanticHighlightToggle&lt;CR&gt;
+
+&#34; ranger.vim
+nnoremap &lt;silent&gt; &lt;C-F&gt; :RangerNewTab&lt;CR&gt;
+
+&#34; Ultisnips
+inoremap &lt;C-N&gt; &lt;nop&gt;
+let g:UltiSnipsExpandTrigger=&#34;&lt;C-J&gt;&#34;
+let g:UltiSnipsJumpForwardTrigger=&#34;&lt;C-J&gt;&#34;
+let g:UltiSnipsJumpBackwardTrigger=&#34;&lt;C-K&gt;&#34;
+
+&#34; Undotree
+noremap &lt;C-U&gt; :UndotreeToggle&lt;CR&gt;
+function g:Undotree_CustomMap()
+	nmap &lt;buffer&gt; j &lt;plug&gt;UndotreeNextState
+	nmap &lt;buffer&gt; k &lt;plug&gt;UndotreePreviousState
+	nmap &lt;buffer&gt; &lt;S-J&gt; 5&lt;plug&gt;UndotreeNextState
+	nmap &lt;buffer&gt; &lt;S-K&gt; 5&lt;plug&gt;UndotreePreviousState
+endfunc
+
+&#34; GitGutter
+nnoremap &lt;C-G&gt; :GitGutterFold&lt;CR&gt;
+nnoremap &lt;LEADER&gt;gp :GitGutterPreviewHunk&lt;CR&gt;
+nnoremap &lt;LEADER&gt;gk :GitGutterPrevHunk&lt;CR&gt;
+nnoremap &lt;LEADER&gt;gj :GitGutterNextHunk&lt;CR&gt;
+
+&#34; vim-subversive
+nmap &lt;LEADER&gt;ss &lt;plug&gt;(SubversiveSubstituteWordRange)
+
+&#34; vim-bookmarks
+nmap &lt;C-B&gt; &lt;Plug&gt;BookmarkShowAll
+nmap &lt;LEADER&gt;bt &lt;Plug&gt;BookmarkToggle
+nmap &lt;LEADER&gt;ba &lt;Plug&gt;BookmarkAnnotate
+
+&#34; ---------------------------- 其他 ------------------------------
+
+&#34; 打开 NVIM 的配置文件
+noremap grc :e ~/.config/nvim/init.vim&lt;CR&gt;
+
+&#34; 取消搜索标记
+noremap ns :nohlsearch&lt;CR&gt;
+
+&#34; 视图模式复制到系统剪切板
+vnoremap y &#34;+y
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-03-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://blog.orionpax.top/2020/03/nvim/" data-title="neovim 的使用" data-hashtags="工具"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://blog.orionpax.top/2020/03/nvim/" data-hashtag="工具"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="http://blog.orionpax.top/2020/03/nvim/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://blog.orionpax.top/2020/03/nvim/" data-title="neovim 的使用"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://blog.orionpax.top/2020/03/nvim/" data-title="neovim 的使用"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://blog.orionpax.top/2020/03/nvim/" data-title="neovim 的使用" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://blog.orionpax.top/2020/03/nvim/" data-title="neovim 的使用" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://blog.orionpax.top/2020/03/nvim/" data-title="neovim 的使用"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://blog.orionpax.top/2020/03/nvim/" data-title="neovim 的使用"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Trello" data-sharer="trello" data-url="http://blog.orionpax.top/2020/03/nvim/" data-title="neovim 的使用" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2020/03/hammerspoon/" class="prev" rel="prev" title="Hammerspoon 的使用"><i class="fas fa-angle-left fa-fw"></i>Hammerspoon 的使用</a>
+            <a href="/2020/03/http/" class="next" rel="next" title="HTTP 知识总结">HTTP 知识总结<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/OrionPax19970905" target="_blank">OrionPax</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"nW05u87yweVedDRhj6AUgzR1-gzGzoHsz","appKey":"4HgKbiggTv7ocU789S5WO6ov","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"确定不说点什么?","recordIP":true,"visitor":true}},"search":{"algoliaAppID":"1Z7P4N2DNP","algoliaIndex":"OrionPax Blog","algoliaSearchKey":"12b884f5e1e54aeab4cba52aeaf76362","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

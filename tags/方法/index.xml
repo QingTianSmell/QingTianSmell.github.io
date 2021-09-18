@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>方法 - 标签 - OrionPax 的个人博客</title>
+        <link>http://blog.orionpax.top/tags/%E6%96%B9%E6%B3%95/</link>
+        <description>方法 - 标签 - OrionPax 的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>OrionPax19970905@gmail.com (OrionPax)</managingEditor>
+            <webMaster>OrionPax19970905@gmail.com (OrionPax)</webMaster><lastBuildDate>Mon, 23 Sep 2019 11:03:15 &#43;0800</lastBuildDate><atom:link href="http://blog.orionpax.top/tags/%E6%96%B9%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+    <title>如何科学上网</title>
+    <link>http://blog.orionpax.top/2019/09/ladder/</link>
+    <pubDate>Mon, 23 Sep 2019 11:03:15 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2019/09/ladder/</guid>
+    <description><![CDATA[简介 除了个人搭建梯子的方式，还可以选用各大主流机场或者小型机场。 前置条件 服务器：上搬瓦工、Vultr 或者其他 VPS 厂商买个服务器 SSH 客户端: 直接用]]></description>
+</item></channel>
+</rss>

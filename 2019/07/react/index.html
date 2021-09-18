@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>React 的使用 - OrionPax 的个人博客</title><meta name="Description" content=""><meta property="og:title" content="React 的使用" />
+<meta property="og:description" content="简介 React 是一个用于构建用户界面的 JavaScript 库。(就是个状态机，将根据数据源映射出 UI，遵守一定的规范可以将，UI 和 逻辑分离，更容易调试和编写单元测试)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.orionpax.top/2019/07/react/" />
+<meta property="article:published_time" content="2019-07-23T21:45:22+08:00" />
+<meta property="article:modified_time" content="2019-07-23T21:45:22+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="React 的使用"/>
+<meta name="twitter:description" content="简介 React 是一个用于构建用户界面的 JavaScript 库。(就是个状态机，将根据数据源映射出 UI，遵守一定的规范可以将，UI 和 逻辑分离，更容易调试和编写单元测试)"/>
+<meta name="application-name" content="OrionPax 的个人博客">
+<meta name="apple-mobile-web-app-title" content="OrionPax 的个人博客"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.orionpax.top/2019/07/react/" /><link rel="prev" href="http://blog.orionpax.top/2019/07/hibernate-e1/" /><link rel="next" href="http://blog.orionpax.top/2019/07/react-e1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "React 的使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/blog.orionpax.top\/2019\/07\/react\/"
+        },"genre": "posts","keywords": "框架","wordcount":  5002 ,
+        "url": "http:\/\/blog.orionpax.top\/2019\/07\/react\/","datePublished": "2019-07-23T21:45:22+08:00","dateModified": "2019-07-23T21:45:22+08:00","publisher": {
+            "@type": "Organization",
+            "name": "OrionPax"},"author": {
+                "@type": "Person",
+                "name": "OrionPax"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/mind-map/"> 导读 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/mind-map/" title="">导读</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">React 的使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/OrionPax19970905" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>OrionPax</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-07-23">2019-07-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5002 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/2019/07/react/" class="leancloud_visitors" data-flag-title="React 的使用">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#基础">基础</a>
+      <ul>
+        <li><a href="#hello-world">Hello World</a></li>
+        <li><a href="#理解-jsx">理解 JSX</a></li>
+        <li><a href="#元素渲染">元素渲染</a></li>
+        <li><a href="#理解-react-组件">理解 React 组件</a>
+          <ul>
+            <li><a href="#概念">概念</a></li>
+            <li><a href="#实例">实例</a></li>
+            <li><a href="#创建一个-react-组件">创建一个 React 组件</a></li>
+            <li><a href="#受控组件和非受控组件">受控组件和非受控组件</a></li>
+          </ul>
+        </li>
+        <li><a href="#props">Props</a></li>
+        <li><a href="#state">State</a></li>
+        <li><a href="#react-组件生命周期及使用场景">React 组件生命周期及使用场景</a></li>
+        <li><a href="#react-事件处理">React 事件处理</a></li>
+        <li><a href="#条件渲染">条件渲染</a></li>
+        <li><a href="#keys">Keys</a></li>
+        <li><a href="#表单">表单</a></li>
+        <li><a href="#状态提升">状态提升</a></li>
+      </ul>
+    </li>
+    <li><a href="#扩展">扩展</a>
+      <ul>
+        <li><a href="#理解-virtual-dom">理解 Virtual DOM</a></li>
+        <li><a href="#组件设计模式">组件设计模式</a>
+          <ul>
+            <li><a href="#高阶组件">高阶组件</a></li>
+            <li><a href="#框架外包装组件">框架(外包装)组件</a></li>
+          </ul>
+        </li>
+        <li><a href="#context">Context</a></li>
+        <li><a href="#脚手架工具">脚手架工具</a></li>
+        <li><a href="#生态圈">生态圈</a>
+          <ul>
+            <li><a href="#redux">Redux</a></li>
+            <li><a href="#react-router">React Router</a></li>
+            <li><a href="#webpack">webpack</a></li>
+            <li><a href="#react-loadable">react-loadable</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#问题">问题</a>
+      <ul>
+        <li><a href="#jax-中-html-代码段被识别为字符串的问题httpblogorionpaxtop201907react-e1"><a href="http://blog.orionpax.top/2019/07/react-e1/">JAX 中 HTML 代码段被识别为字符串的问题</a></a></li>
+        <li><a href="#react-和直接修改-dom-的前端框架的兼容性问题httpsblogorionpaxtop201907react-e2"><a href="https://blog.orionpax.top/2019/07/react-e2/">React 和直接修改 DOM 的前端框架的兼容性问题</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<p>React 是一个用于构建用户界面的 JavaScript 库。(就是个状态机，将根据数据源映射出 UI，遵守一定的规范可以将，UI 和 逻辑分离，更容易调试和编写单元测试)</p>
+<blockquote>
+<p>声明式<br>
+React 可以非常轻松地创建用户交互界面。为你应用的每一个状态设计简洁的视图，在数据改变时 React 也可以高效地更新渲染界面。以声明式编写 UI，可以让你的代码更加可靠，且方便调试。<br>
+组件化<br>
+创建好拥有各自状态的组件，再由组件构成更加复杂的界面。无需再用模版代码，通过使用 JavaScript 编写的组件你可以更好地传递数据，将应用状态和 DOM 拆分开来。</p>
+</blockquote>
+<h2 id="基础">基础</h2>
+<h3 id="hello-world">Hello World</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ReactDOM.render(
+  &lt;h1&gt;Hello, world!&lt;/h1&gt;,
+  document.getElementById(&#39;root&#39;)
+);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="理解-jsx">理解 JSX</h3>
+<ul>
+<li>本质 : 不是模板引擎而是动态创建组件(使用 JavaScript 原生的 DOM API <code>document.createElement()</code>)的语法糖。JSX 防注入攻击。React DOM 在渲染之前默认会过滤所有传入的值。它可以确保你的应用不会被注入攻击。所有的内容在渲染之前都被转换成了字符串。这样可以有效地防止 XSS(跨站脚本)攻击。</li>
+<li>对比其他模板语言的优点
+<ul>
+<li>使用声明式创建页面比较直观</li>
+<li>使用代码创建页面十分灵活</li>
+<li>不需要学习一门新的模板语言</li>
+</ul>
+</li>
+<li>约定
+<ul>
+<li>React 认为小写的 tag 是原生的 DOM 节点，例如:<code>&lt;div&gt;</code>。</li>
+<li>大写字母开头的为自定义组件。</li>
+<li>JAX 标记可以直接使用属性语法，例如:<code>&lt;menu.Item&gt;</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="元素渲染">元素渲染</h3>
+<p>React 只会更新必要的部分。React DOM 首先会比较元素内容先后的不同，而在渲染过程中只会更新改变了的部分。根据我们以往的经验，将界面视为一个个特定时刻的固定内容（就像一帧一帧的动画），而不是随时处于变化之中（而不是处于变化中的一整段动画），将会有利于我们理清开发思路，减少各种 bug。</p>
+<h3 id="理解-react-组件">理解 React 组件</h3>
+<h4 id="概念">概念</h4>
+<ul>
+<li>React 组件一般不提供方法，而是某种状态机。</li>
+<li>React 组件可以理解为一个纯函数(输入是什么结果一定是什么)。</li>
+<li>单向数据绑定(外部通过 props 传递参数给内部，内部发生变化时暴露事件给外部)。</li>
+</ul>
+<h4 id="实例">实例</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//JavaScript函数方式
+function Welcome(props) {
+    return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+
+//ES6 class 定义一个组件(使用类就允许我们使用其它特性，例如局部状态、生命周期钩子)
+//组件名称必须以大写字母开头。
+//组件的返回值只能有一个根元素。这也是我们要用一个&lt;div&gt;来包裹所有&lt;Welcome /&gt;元素的原因。
+class Welcome extends React.Component {
+    render() {
+        return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="创建一个-react-组件">创建一个 React 组件</h4>
+<ul>
+<li>方法论
+<ol>
+<li>创建静态 UI(原型)。</li>
+<li>考虑组件的状态组成(外部传递还是内部维护)。</li>
+<li>考虑组件的交互方式(内部用户进行的操作如何暴露给外部的人使用)。</li>
+</ol>
+</li>
+<li>单一职责原则
+<ol>
+<li>每个组件只做一件事。</li>
+<li>如果组件变得复杂，那么应该拆分成小的组件(拆分小组件可以在降低复杂度的同时提高性能，对组件状态进行更新时刷新范围变小)。</li>
+</ol>
+</li>
+<li>DRY 原则
+<ol>
+<li>能够计算得到的状态就不要单独存储。</li>
+<li>组件尽量无状态，所需数据通过 props 获取。</li>
+</ol>
+</li>
+</ul>
+<h4 id="受控组件和非受控组件">受控组件和非受控组件</h4>
+<ul>
+<li>受控组件 : 组件或表单元素状态由使用者维护。React 中表单元素通常作为受控组件使用。对外暴露修改事件的静态组件也属于受控组件。</li>
+<li>非受控组件 : 组件状态由自身维护，或表单元素状态由 DOM 自身维护。</li>
+</ul>
+<h3 id="props">Props</h3>
+<ul>
+<li>当 React 遇到的元素是用户自定义的组件，它会将 JSX 属性作为单个对象传递给该组件，这个对象称之为“props”。</li>
+<li>Props 的只读性。无论是使用函数或是类来声明一个组件，它决不能修改它自己的 props。</li>
+<li>我们建议从组件自身的角度来命名 props，而不是根据使用组件的上下文命名。</li>
+<li>React 是非常灵活的，但它也有一个严格的规则：所有的 React 组件必须像纯函数那样使用它们的 props。</li>
+</ul>
+<h3 id="state">State</h3>
+<ul>
+<li>不要直接更新状态。应当使用 setState()。构造函数是唯一能够初始化 this.state 的地方。</li>
+<li>状态更新可能是异步的。React 可以将多个 setState() 调用合并成一个调用来提高性能。因为 this.props 和 this.state 可能是异步更新的，你不应该依靠它们的值来计算下一个状态。</li>
+<li>数据自顶向下流动。父组件或子组件都不能知道某个组件是有状态还是无状态，并且它们不应该关心某组件是被定义为一个函数还是一个类。这就是为什么状态通常被称为局部或封装。 除了拥有并设置它的组件外，其它组件不可访问。这通常被称为自顶向下或单向数据流。 任何状态始终由某些特定组件所有，并且从该状态导出的任何数据或 UI 只能影响树中下方的组件。</li>
+<li>经过计算后的值不应该赋给 state，正确的模式应该是在渲染时计算这些值。这样保证了计算后的值永远不会与派生出它的 props 值不同步。</li>
+<li>在 React 应用程序中，组件是有状态还是无状态被认为是可能随时间而变化的组件的实现细节。 可以在有状态组件中使用无状态组件，反之亦然。</li>
+</ul>
+<h3 id="react-组件生命周期及使用场景">React 组件生命周期及使用场景</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img.bagevent.com/2019-04-03_125257.png"
+        data-srcset="https://img.bagevent.com/2019-04-03_125257.png, https://img.bagevent.com/2019-04-03_125257.png 1.5x, https://img.bagevent.com/2019-04-03_125257.png 2x"
+        data-sizes="auto"
+        alt="https://img.bagevent.com/2019-04-03_125257.png"
+        title="React组件生命周期" /></p>
+<ul>
+<li>render()
+<ul>
+<li>唯一必须实现的方法</li>
+<li>render() 函数应该为纯函数，这意味着在不修改组件 state 的情况下，每次调用时都返回相同的结果，并且它不会直接与浏览器交互。</li>
+</ul>
+</li>
+<li>constructor(props)
+<ul>
+<li>用于初始化内部状态(很少使用)</li>
+<li>唯一可以直接修改 state 的地方</li>
+</ul>
+</li>
+<li>static getDerivedStateFromProps(props, state)
+<ul>
+<li>当 state 需要从 props 初始化时使用</li>
+<li>尽量不要使用(维护两者状态一致性会增加复杂度)</li>
+<li>每次 render 都会调用</li>
+<li>典型场景：表单控件获取默认值</li>
+</ul>
+</li>
+<li>componentDidMount()
+<ul>
+<li>UI 渲染完成后调用</li>
+<li>只执行一次</li>
+<li>典型场景：获取外部资源初始化 state</li>
+</ul>
+</li>
+<li>componentWillUnmount()
+<ul>
+<li>组件移除时调用</li>
+<li>典型场景：释放资源</li>
+</ul>
+</li>
+<li>getSnapshotBeforeUpdate(prevProps, prevState)
+<ul>
+<li>在最近一次渲染输出（提交到 DOM 节点）之前调用。</li>
+<li>典型场景：获取 render 之前的 DOM 状态(例如：滚动位置)</li>
+</ul>
+</li>
+<li>componentDidUpdate(prevProps, prevState, snapshot)
+<ul>
+<li>每次 UI 更新时调用</li>
+<li>典型场景：页面需要根据 props 变化重新获取数据</li>
+</ul>
+</li>
+<li>shouldComponentUpdate(nextProps, nextState)
+<ul>
+<li>决定 Virtual DOM 是否要重绘</li>
+<li>一般可以由 PureComponent 自动实现</li>
+<li>典型场景：性能优化</li>
+</ul>
+</li>
+</ul>
+<h3 id="react-事件处理">React 事件处理</h3>
+<ul>
+<li>React 事件绑定属性的命名采用驼峰式写法，而不是小写。</li>
+<li>如果采用 JSX 的语法你需要传入一个函数作为事件处理函数，而不是一个字符串(DOM 元素的写法)</li>
+<li>在 React 中另一个不同是你不能使用返回 false 的方式阻止默认行为。你必须明确的使用 preventDefault。</li>
+<li>你必须谨慎对待 JSX 回调函数中的 this，类的方法默认是不会绑定 this 的。如果你忘记绑定 this, 当你调用这个函数的时候 this 的值会是 undefined。</li>
+<li>向事件处理程序传递参数
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//两种方式是等价的，分别通过 arrow functions 和 Function.prototype.bind 来为事件处理函数传递参数。
+//通过箭头函数的方式，事件对象必须显式的进行传递
+&lt;button onClick={(e) =&gt; this.deleteRow(id, e)}&gt;Delete Row&lt;/button&gt;
+//但是通过 bind 的方式，事件对象以及更多的参数将会被隐式的进行传递。值得注意的是，通过 bind 方式向监听函数传参，在类组件中定义的监听函数，事件对象 e 要排在所传递参数的后面。
+&lt;button onClick={this.deleteRow.bind(this, id)}&gt;Delete Row&lt;/button&gt;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="条件渲染">条件渲染</h3>
+<ul>
+<li>与运算符 &amp;&amp;</li>
+<li>三目运算符</li>
+<li>阻止组件渲染。在极少数情况下，你可能希望隐藏组件，即使它被其他组件渲染。让 render 方法返回 null 而不是它的渲染结果即可实现。</li>
+</ul>
+<h3 id="keys">Keys</h3>
+<ul>
+<li>Keys 可以在 DOM 中的某些元素被增加或删除的时候帮助 React 识别哪些元素发生了变化。因此你应当给数组中的每一个元素赋予一个确定的标识。</li>
+<li>一个元素的 key 最好是这个元素在列表中拥有的一个独一无二的字符串。通常，我们使用来自数据的 id 作为元素的 key。当元素没有确定的 id 时，你可以使用他的序列号索引 index 作为 key。==如果列表项目的顺序可能会变化，我们不建议使用索引来用作键值，因为这样做会导致性能的负面影响==，还可能引起组件状态问题。如果你选择不指定显式的键值，那么 React 将默认使用索引用作为列表项目的键值。</li>
+<li>元素的 key 只有放在其环绕数组的上下文中才有意义。比方说，如果你提取出一个 ListItem 组件，你应该把 key 保存在数组中的这个&lt;ListItem /&gt;元素上，而不是放在 ListItem 组件中的&lt;li&gt;元素上。</li>
+</ul>
+<h3 id="表单">表单</h3>
+<ul>
+<li>
+<p>在 HTML 当中，像<code>&lt;input&gt;</code>,<code>&lt;textarea&gt;</code>, 和 <code>&lt;select&gt;</code>这类表单元素会维持自身状态，并根据用户输入进行更新。但在 React 中，可变的状态通常保存在组件的状态属性中，并且只能用 <code>setState()</code> 方法进行更新。我们通过使 react 变成一种单一数据源的状态来结合二者。<mark>React 负责渲染表单的组件仍然控制用户后续输入时所发生的变化。相应的，其值由 React 控制的输入表单元素称为“受控组件”。</mark></p>
+</li>
+<li>
+<p>多个输入的解决方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//当你有处理多个受控的input元素时，你可以通过给每个元素添加一个name属性，来让处理函数根据 event.target.name的值来选择做什么。
+handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === &#39;checkbox&#39; ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="状态提升">状态提升</h3>
+<ul>
+<li>在 React 应用中，对应任何可变数据理应只有一个单一“数据源”。通常，状态都是首先添加在需要渲染数据的组件中。然后，如果另一个组件也需要这些数据，你可以将数据提升至离它们最近的共同祖先中。</li>
+<li>向下传递父组件的 State 及其更新方法。</li>
+<li>状态提升要写更多的“炉墙代码”，比起双向绑定方式，但带来的好处是，你也可以花更少的工作量找到和隔离 bug。因为任何生活在某些组件中的状态数据，也只有该组件它自己能够操作这些数据，发生 bug 的表面积就被大大地减小了。</li>
+<li>如果某些数据可以由 props 或者 state 推导出来，那么它很有可能不应该在 state 中出现。</li>
+</ul>
+<h2 id="扩展">扩展</h2>
+<h3 id="理解-virtual-dom">理解 Virtual DOM</h3>
+<ul>
+<li>虚拟 DOM 如何工作(DIFF 算法)
+<ul>
+<li>广度优先分层比较，针对 UI 很少发生跨层移动</li>
+<li>兄弟间位置移动会根据 key 交换位置</li>
+<li>DOM 跨层移动 React 不会做检查，就是简单的删除然后添加</li>
+</ul>
+</li>
+<li>虚拟 DOM 的两个假设
+<ul>
+<li>组件的 DOM 结构是相对稳定的</li>
+<li>类型相同的兄弟节点可以被唯一标识</li>
+</ul>
+</li>
+</ul>
+<h3 id="组件设计模式">组件设计模式</h3>
+<h4 id="高阶组件">高阶组件</h4>
+<ul>
+<li>
+<p>高阶组件接收组件作为参数，定义通用逻辑、状态，render 方法中将定义的状态和逻辑作为 props 传给接收的组件并直接返回。</p>
+</li>
+<li>
+<p>高阶组件类似于已实现的功能接口，子组件引入高阶组件<code>import 高阶组件函数名 form &quot;组件路径&quot;</code>，在内部使用高阶组件将会传递的 props，然后导出通过高阶组件封装的组件给外部使用<code>export default 高阶组件函数名(组件)</code></p>
+</li>
+<li>
+<p>不要改变原始组件，高阶组件应该使用组合技术，将输入组件包裹到一个容器组件。</p>
+</li>
+<li>
+<p>约定：贯穿传递不相关 props 属性给被包裹的组件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">render() {
+  // 过滤掉专用于这个阶组件的props属性，
+  // 不应该被贯穿传递
+  const { extraProp, ...passThroughProps } = this.props;
+
+  // 向被包裹的组件注入props属性，这些一般都是状态值或
+  // 实例方法
+  const injectedProp = someStateOrInstanceMethod;
+
+  // 向被包裹的组件传递props属性
+  return (
+    &lt;WrappedComponent
+      injectedProp={injectedProp}
+      {...passThroughProps}
+    /&gt;
+  );
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>约定：包装显示名字以便于调试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//最常用的技术是包裹显示名字给被包裹的组件。所以，如果你的高阶组件名字是 withSubscription，
+//且被包裹的组件的显示名字是 CommentList，那么就是用 WithSubscription(CommentList)这样的显示名字
+function withSubscription(WrappedComponent) {
+  class WithSubscription extends React.Component {
+    /* ... */
+  }
+  WithSubscription.displayName = `WithSubscription(${getDisplayName(
+    WrappedComponent
+  )})`;
+  return WithSubscription;
+}
+
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || &#34;Component&#34;;
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>告诫：不要在 render 方法内使用高阶组件</p>
+</li>
+<li>
+<p>告诫：必须将静态方法做拷贝。当你应用一个高阶组件到一个组件时，原始组件被包裹于一个容器组件内，也就意味着新组件会没有原始组件的任何静态方法。</p>
+</li>
+<li>
+<p>告诫：Refs 属性不能贯穿传递</p>
+</li>
+<li>
+<p>典型场景：通用逻辑复用</p>
+</li>
+<li>
+<p>参考：<a href="https://react.docschina.org/docs/higher-order-components.html" target="_blank" rel="noopener noreffer">高阶组件</a></p>
+</li>
+</ul>
+<h4 id="框架外包装组件">框架(外包装)组件</h4>
+<ul>
+<li>框架组件接收 props.children 作为可变的 UI 显示。定义通用 UI，变化部分使用 props.children，使用者决定这部分如何展示。</li>
+<li>典型场景：通用 UI 复用</li>
+</ul>
+<h3 id="context">Context</h3>
+<ul>
+<li>
+<p>Context 通过组件树提供了一个传递数据的方法，从而避免了在每一个层级手动的传递 props 属性。</p>
+</li>
+<li>
+<p>不要仅仅为了避免在几个层级下的组件传递 props 而使用 context，它是被用于在多个层级的多个组件需要访问相同数据的情景。</p>
+</li>
+<li>
+<p>实例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 创建一个 theme Context,  默认 theme 的值为 light
+const ThemeContext = React.createContext(&#34;light&#34;);
+
+function ThemedButton(props) {
+  // ThemedButton 组件从 context 接收 theme
+  return (
+    &lt;ThemeContext.Consumer&gt;
+      {theme =&gt; &lt;Button {...props} theme={theme} /&gt;}
+    &lt;/ThemeContext.Consumer&gt;
+  );
+}
+
+// 中间组件
+function Toolbar(props) {
+  return (
+    &lt;div&gt;
+      &lt;ThemedButton /&gt;
+    &lt;/div&gt;
+  );
+}
+
+class App extends React.Component {
+  render() {
+    return (
+      &lt;ThemeContext.Provider value=&#34;dark&#34;&gt;
+        &lt;Toolbar /&gt;
+      &lt;/ThemeContext.Provider&gt;
+    );
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>可以使用高阶组件的设计模式很容易的封装 Context</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">const ThemeContext = React.createContext(&#34;light&#34;);
+// 在函数中引入组件
+export function withTheme(Component) {
+  // 然后返回另一个组件
+  return function ThemedComponent(props) {
+    // 最后使用context theme渲染这个被封装组件
+    // 注意我们照常引用了被添加的属性
+    return (
+      &lt;ThemeContext.Consumer&gt;
+        {theme =&gt; &lt;Component {...props} theme={theme} /&gt;}
+      &lt;/ThemeContext.Consumer&gt;
+    );
+  };
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>React 以前使用实验性的 context API 运行，旧的 API 将会在 16.x 版本中得到支持，但使用到它的应用应该迁移到新版本。遗留的 API 将在未来的 React 版本中被移除。</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://react.docschina.org/docs/context.html" target="_blank" rel="noopener noreffer">Context 使用教程</a></p>
+</blockquote>
+<h3 id="脚手架工具">脚手架工具</h3>
+<p><a href="https://github.com/facebook/create-react-app" target="_blank" rel="noopener noreffer">Create React App</a> 是 Facebook 的一个最简依赖的脚手架工具，适合学习 React 或者开发简单应用。</p>
+<p><a href="http://rekit.js.org/" target="_blank" rel="noopener noreffer">Rekit</a> 基于 Create React App 多整合了很多必要的库，同时提供拆分大型项目耦合度的架构。</p>
+<p><a href="https://codesandbox.io" target="_blank" rel="noopener noreffer">Codesandbox</a> 在线 IDE + 脚手架，不关注项目细节，打包部署过程隐藏。</p>
+<h3 id="生态圈">生态圈</h3>
+<h4 id="redux">Redux</h4>
+<p><a href="https://redux.js.org" target="_blank" rel="noopener noreffer">Redux</a> 是 React 全家桶的一员，Redux 是 JavaScript 状态容器，提供可预测化的状态管理。</p>
+<h4 id="react-router">React Router</h4>
+<p>React Router 是完整的 React 路由解决方案。React Router 保持 UI 与 URL 同步。它拥有简单的 API 与强大的功能例如代码缓冲加载、动态路由匹配、以及建立正确的位置过渡处理。</p>
+<h4 id="webpack">webpack</h4>
+<p>前端打包工具</p>
+<h4 id="react-loadable">react-loadable</h4>
+<p>和 webpack 结合实现按需加载，提高 APP 第一次访问速度</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">import Loadable from &#39;react-loadable&#39;;
+import Loading from &#39;./my-loading-component&#39;;
+
+const LoadableComponent = Loadable({
+  loader: () =&gt; import(&#39;./my-component&#39;),
+  loading: Loading,
+});
+
+export default class App extends React.Component {
+  render() {
+    return &lt;LoadableComponent/&gt;;
+  }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="问题">问题</h2>
+<h3 id="jax-中-html-代码段被识别为字符串的问题httpblogorionpaxtop201907react-e1"><a href="http://blog.orionpax.top/2019/07/react-e1/" target="_blank" rel="noopener noreffer">JAX 中 HTML 代码段被识别为字符串的问题</a></h3>
+<h3 id="react-和直接修改-dom-的前端框架的兼容性问题httpsblogorionpaxtop201907react-e2"><a href="https://blog.orionpax.top/2019/07/react-e2/" target="_blank" rel="noopener noreffer">React 和直接修改 DOM 的前端框架的兼容性问题</a></h3>
+<h2 id="参考">参考</h2>
+<blockquote>
+<p><a href="https://react.docschina.org/docs/hello-world.html" target="_blank" rel="noopener noreffer">React 官方文档</a></p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-07-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://blog.orionpax.top/2019/07/react/" data-title="React 的使用" data-hashtags="框架"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://blog.orionpax.top/2019/07/react/" data-hashtag="框架"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="http://blog.orionpax.top/2019/07/react/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://blog.orionpax.top/2019/07/react/" data-title="React 的使用"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://blog.orionpax.top/2019/07/react/" data-title="React 的使用"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://blog.orionpax.top/2019/07/react/" data-title="React 的使用" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://blog.orionpax.top/2019/07/react/" data-title="React 的使用" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://blog.orionpax.top/2019/07/react/" data-title="React 的使用"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://blog.orionpax.top/2019/07/react/" data-title="React 的使用"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Trello" data-sharer="trello" data-url="http://blog.orionpax.top/2019/07/react/" data-title="React 的使用" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2019/07/hibernate-e1/" class="prev" rel="prev" title="Hibernate 多线程下 No Session 问题"><i class="fas fa-angle-left fa-fw"></i>Hibernate 多线程下 No Session 问题</a>
+            <a href="/2019/07/react-e1/" class="next" rel="next" title="JAX 中 HTML 代码段被识别为字符串的问题">JAX 中 HTML 代码段被识别为字符串的问题<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/OrionPax19970905" target="_blank">OrionPax</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"nW05u87yweVedDRhj6AUgzR1-gzGzoHsz","appKey":"4HgKbiggTv7ocU789S5WO6ov","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"确定不说点什么?","recordIP":true,"visitor":true}},"search":{"algoliaAppID":"1Z7P4N2DNP","algoliaIndex":"OrionPax Blog","algoliaSearchKey":"12b884f5e1e54aeab4cba52aeaf76362","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,80 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OrionPax 的个人博客</title>
+        <link>http://blog.orionpax.top/</link>
+        <description>OrionPax 的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>OrionPax19970905@gmail.com (OrionPax)</managingEditor>
+            <webMaster>OrionPax19970905@gmail.com (OrionPax)</webMaster><lastBuildDate>Sat, 03 Jul 2021 11:51:34 &#43;0800</lastBuildDate>
+            <atom:link href="http://blog.orionpax.top/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>IE GET 方式请求数据缓存问题</title>
+    <link>http://blog.orionpax.top/2021/07/ie-e1/</link>
+    <pubDate>Sat, 03 Jul 2021 11:51:34 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2021/07/ie-e1/</guid>
+    <description><![CDATA[问题描述 IE 浏览器请求数据不会更新。 产生原因 IE会缓存GET方式的URL访问返回的数据，如果下一次访问的URL相同的话，IE不会访问服务器而是]]></description>
+</item><item>
+    <title>唯二好用的连接池之 Druid 的使用</title>
+    <link>http://blog.orionpax.top/2021/05/druid/</link>
+    <pubDate>Sun, 23 May 2021 14:16:00 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2021/05/druid/</guid>
+    <description><![CDATA[简介 Druid 是一个数据库连接池。在功能、性能、扩展性方面，都超过其他数据库连接池，包括 DBCP、C3P0、BoneCP、Proxool、JBoss]]></description>
+</item><item>
+    <title>Angular 的使用</title>
+    <link>http://blog.orionpax.top/2020/04/angular/</link>
+    <pubDate>Sun, 12 Apr 2020 14:28:05 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/04/angular/</guid>
+    <description><![CDATA[简介 Angular 是一个应用设计框架与开发平台，用于创建高效、复杂、精致的单页面应用。 基础 模版语法 Angular 模板语法的五个常用特性： *ngFor *ngIf 插值 {{}} 属性绑定 [] 事件绑定]]></description>
+</item><item>
+    <title>Mybatis 的使用</title>
+    <link>http://blog.orionpax.top/2020/04/mybatis/</link>
+    <pubDate>Sat, 04 Apr 2020 11:29:00 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/04/mybatis/</guid>
+    <description><![CDATA[简介 Mybatis 是一个数据持久层(ORM)框架。但是只完成了结果集到对象的映射，而 Hibernate 是数据表到对象的映射。 优点： 简单易学：本身就很小且简单。没有任何第]]></description>
+</item><item>
+    <title>Flutter 的使用</title>
+    <link>http://blog.orionpax.top/2020/03/flutter/</link>
+    <pubDate>Sat, 21 Mar 2020 21:04:37 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/flutter/</guid>
+    <description><![CDATA[基础 Dart 什么是 Dart ? 因为 JavaScript 的种种问题，Dart 最初是 Google 设计用来代替 JavaScript 的语言。但是 JavaScript 因为 Node.js 成为了前后端同吃的全栈语言，前端的开发模式也因此改变，D]]></description>
+</item><item>
+    <title>MySQL 的使用</title>
+    <link>http://blog.orionpax.top/2020/03/mysql/</link>
+    <pubDate>Sun, 15 Mar 2020 11:50:21 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/mysql/</guid>
+    <description><![CDATA[简介 MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的 RDBMS(Relational Database Management System：关系数据库管理系统)应用软件之一。 基础 基础命令 1 2 3 4 5 6 7]]></description>
+</item><item>
+    <title>RESTful 知识总结</title>
+    <link>http://blog.orionpax.top/2020/03/restful/</link>
+    <pubDate>Sat, 14 Mar 2020 22:24:11 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/restful/</guid>
+    <description><![CDATA[什么是 RESTful? RESTful 就是一种当前互联网软件的 api 设计模式。最早是由 Fielding 在他的博士论文里提出，定名为 REST，即 Representational State Transfer 的缩写。要理解 RESTful 架构，最好的方法就是去]]></description>
+</item><item>
+    <title>HTTP 知识总结</title>
+    <link>http://blog.orionpax.top/2020/03/http/</link>
+    <pubDate>Sat, 14 Mar 2020 15:36:54 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/http/</guid>
+    <description><![CDATA[HTTP 协议是什么？ HTTP 协议是超文本传输协议的缩写，英文是 Hyper Text Transfer Protocol。它是从 WEB 服务器传输超文本标记语言 (HTML) 到本地浏览器的传送协议。设计 HTTP 最]]></description>
+</item><item>
+    <title>neovim 的使用</title>
+    <link>http://blog.orionpax.top/2020/03/nvim/</link>
+    <pubDate>Thu, 12 Mar 2020 13:34:31 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/nvim/</guid>
+    <description><![CDATA[前言 为了更快的速度和很多 neovim 才支持的插件，从 vim 迁移过来了。 基础 Normal 1 2 3 4 5 6 7 8 9 10 11 j : 下移一字符 k : 上移一字符 h : 左移一字符 l : 右移一字符]]></description>
+</item><item>
+    <title>Hammerspoon 的使用</title>
+    <link>http://blog.orionpax.top/2020/03/hammerspoon/</link>
+    <pubDate>Sun, 08 Mar 2020 21:06:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/hammerspoon/</guid>
+    <description><![CDATA[简介 Hammerspoon 是一个 MacOS 下的开源的自动化工具。在操作系统和 Lua 脚本之间构建了桥梁。Hammerspoon 除了本身提供的操作系统的 api 外，同时提供了一批特定]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>工具 - 标签 - OrionPax 的个人博客</title>
+        <link>http://blog.orionpax.top/tags/%E5%B7%A5%E5%85%B7/</link>
+        <description>工具 - 标签 - OrionPax 的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>OrionPax19970905@gmail.com (OrionPax)</managingEditor>
+            <webMaster>OrionPax19970905@gmail.com (OrionPax)</webMaster><lastBuildDate>Sun, 15 Mar 2020 11:50:21 &#43;0800</lastBuildDate><atom:link href="http://blog.orionpax.top/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+    <title>MySQL 的使用</title>
+    <link>http://blog.orionpax.top/2020/03/mysql/</link>
+    <pubDate>Sun, 15 Mar 2020 11:50:21 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/mysql/</guid>
+    <description><![CDATA[简介 MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的 RDBMS(Relational Database Management System：关系数据库管理系统)应用软件之一。 基础 基础命令 1 2 3 4 5 6 7]]></description>
+</item><item>
+    <title>neovim 的使用</title>
+    <link>http://blog.orionpax.top/2020/03/nvim/</link>
+    <pubDate>Thu, 12 Mar 2020 13:34:31 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/nvim/</guid>
+    <description><![CDATA[前言 为了更快的速度和很多 neovim 才支持的插件，从 vim 迁移过来了。 基础 Normal 1 2 3 4 5 6 7 8 9 10 11 j : 下移一字符 k : 上移一字符 h : 左移一字符 l : 右移一字符]]></description>
+</item><item>
+    <title>Hammerspoon 的使用</title>
+    <link>http://blog.orionpax.top/2020/03/hammerspoon/</link>
+    <pubDate>Sun, 08 Mar 2020 21:06:45 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/hammerspoon/</guid>
+    <description><![CDATA[简介 Hammerspoon 是一个 MacOS 下的开源的自动化工具。在操作系统和 Lua 脚本之间构建了桥梁。Hammerspoon 除了本身提供的操作系统的 api 外，同时提供了一批特定]]></description>
+</item><item>
+    <title>Ranger 命令行下的文件管理器</title>
+    <link>http://blog.orionpax.top/2020/03/ranger/</link>
+    <pubDate>Sat, 07 Mar 2020 11:47:44 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/03/ranger/</guid>
+    <description><![CDATA[简介 Ranger 是一个类似 Vim 键位的命令行文件管理器。 安装 mac 下执行brew install ranger 安装。 基础 1 2 3 ?: 查看帮助，ranger 的很多命令按过第一个键就会有相关提]]></description>
+</item><item>
+    <title>curl 的使用</title>
+    <link>http://blog.orionpax.top/2020/01/curl/</link>
+    <pubDate>Mon, 06 Jan 2020 19:36:40 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2020/01/curl/</guid>
+    <description><![CDATA[简介 curl 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在&quot;标准输出&rdquo;（stdout）上面。 curl VS Postman 能够快速]]></description>
+</item><item>
+    <title>SSH 命令的使用</title>
+    <link>http://blog.orionpax.top/2019/12/ssh/</link>
+    <pubDate>Tue, 31 Dec 2019 18:36:53 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2019/12/ssh/</guid>
+    <description><![CDATA[简介 简单说，SSH 是一种网络协议，用于计算机之间的加密登录。如果一个用户从本地计算机，使用 SSH 协议登录另一台远程计算机，我们就可以认为，这种登]]></description>
+</item><item>
+    <title>WIN10 下终端解决方案</title>
+    <link>http://blog.orionpax.top/2019/10/windows-terminal/</link>
+    <pubDate>Thu, 10 Oct 2019 18:05:34 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2019/10/windows-terminal/</guid>
+    <description><![CDATA[前言 本文已过时。现在个人的解决方案为 Windows Terminal + fishshell + Oh My Fish， 从 zsh 转到 fish 的原因就是因为 zsh 太慢了。 WIN10 命令行工具最终选择了 WSL + Ubuntu + Terinus + Oh My Zsh。]]></description>
+</item><item>
+    <title>Git 的使用</title>
+    <link>http://blog.orionpax.top/2019/08/git/</link>
+    <pubDate>Thu, 29 Aug 2019 20:03:23 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2019/08/git/</guid>
+    <description><![CDATA[简介 一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的]]></description>
+</item><item>
+    <title>Tomcat 的使用</title>
+    <link>http://blog.orionpax.top/2019/07/tomcat/</link>
+    <pubDate>Tue, 23 Jul 2019 22:41:51 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2019/07/tomcat/</guid>
+    <description><![CDATA[简介 Tomcat 服务器是一个免费的开放源代码的 Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试 JSP]]></description>
+</item><item>
+    <title>Windows 下的软件包管理工具 Scoop</title>
+    <link>http://blog.orionpax.top/2019/07/scoop/</link>
+    <pubDate>Thu, 11 Jul 2019 21:56:57 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://blog.orionpax.top/2019/07/scoop/</guid>
+    <description><![CDATA[简介 Scoop 是 Windows 下的命令行软件包管理器，特点是不会污染环境变量，根据 Json 安装软件并生成软链接。 安装 前置条件 Windows 版本不低于 Windows 7 Windows 中的 PowerShell 版本不低于 PowerShell 3 能访]]></description>
+</item></channel>
+</rss>

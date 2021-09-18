@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>MySQL 的使用 - OrionPax 的个人博客</title><meta name="Description" content=""><meta property="og:title" content="MySQL 的使用" />
+<meta property="og:description" content="简介 MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的 RDBMS(Relational Database Management System：关系数据库管理系统)应用软件之一。 基础 基础命令 1 2 3 4 5 6 7" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.orionpax.top/2020/03/mysql/" />
+<meta property="article:published_time" content="2020-03-15T11:50:21+08:00" />
+<meta property="article:modified_time" content="2020-03-15T11:50:21+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL 的使用"/>
+<meta name="twitter:description" content="简介 MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的 RDBMS(Relational Database Management System：关系数据库管理系统)应用软件之一。 基础 基础命令 1 2 3 4 5 6 7"/>
+<meta name="application-name" content="OrionPax 的个人博客">
+<meta name="apple-mobile-web-app-title" content="OrionPax 的个人博客"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://blog.orionpax.top/2020/03/mysql/" /><link rel="prev" href="http://blog.orionpax.top/2020/03/restful/" /><link rel="next" href="http://blog.orionpax.top/2020/03/flutter/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MySQL 的使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/blog.orionpax.top\/2020\/03\/mysql\/"
+        },"genre": "posts","keywords": "工具","wordcount":  2243 ,
+        "url": "http:\/\/blog.orionpax.top\/2020\/03\/mysql\/","datePublished": "2020-03-15T11:50:21+08:00","dateModified": "2020-03-15T11:50:21+08:00","publisher": {
+            "@type": "Organization",
+            "name": "OrionPax"},"author": {
+                "@type": "Person",
+                "name": "OrionPax"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/mind-map/"> 导读 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="OrionPax 的个人博客"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/img/Blog.png"
+        data-srcset="/img/Blog.png, /img/Blog.png 1.5x, /img/Blog.png 2x"
+        data-sizes="auto"
+        alt="/img/Blog.png"
+        title="/img/Blog.png" />OrionPax 的个人博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/mind-map/" title="">导读</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">MySQL 的使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/OrionPax19970905" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>OrionPax</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-03-15">2020-03-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2243 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/2020/03/mysql/" class="leancloud_visitors" data-flag-title="MySQL 的使用">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#基础">基础</a>
+      <ul>
+        <li><a href="#基础命令">基础命令</a></li>
+        <li><a href="#基础-sql-语句">基础 SQL 语句</a>
+          <ul>
+            <li><a href="#库相关">库相关</a></li>
+            <li><a href="#表相关">表相关</a></li>
+            <li><a href="#数据相关">数据相关</a></li>
+          </ul>
+        </li>
+        <li><a href="#列类型">列类型</a></li>
+        <li><a href="#列约束">列约束</a></li>
+        <li><a href="#内置函数">内置函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#扩展">扩展</a>
+      <ul>
+        <li><a href="#如何进行-sql-优化">如何进行 SQL 优化？</a></li>
+      </ul>
+    </li>
+    <li><a href="#应用场景">应用场景</a>
+      <ul>
+        <li><a href="#分页查询">分页查询</a></li>
+        <li><a href="#多表查询">多表查询</a></li>
+        <li><a href="#子查询">子查询</a></li>
+        <li><a href="#分组统计查询">分组统计查询</a></li>
+        <li><a href="#mysql-update-误操作后恢复数据">MySQL UPDATE 误操作后恢复数据</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<p>MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的 RDBMS(Relational Database Management System：关系数据库管理系统)应用软件之一。</p>
+<h2 id="基础">基础</h2>
+<h3 id="基础命令">基础命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 启动命令和启动服务命令根据操作系统不同有所差别</span>
+<span class="c1"># 连接 mysql 服务</span>
+mysql <span class="o">[</span>-h 地址<span class="o">]</span> <span class="o">[</span>-P 端口<span class="o">]</span> <span class="o">[</span>-u 用户名<span class="o">]</span> <span class="o">[</span>-p 密码<span class="o">]</span>
+<span class="c1"># 备份数据库</span>
+<span class="c1"># mysqldump -uroot -p &gt; ~/db/dump1.sql</span>
+mysqldump -u &lt;user&gt; -p &lt;database&gt; &gt; &lt;path&gt;
+<span class="c1"># copy 数据库或者恢复数据库</span>
+mysql -u &lt;user&gt; -p &lt;database&gt; &lt; &lt;path&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="基础-sql-语句">基础 SQL 语句</h3>
+<h4 id="库相关">库相关</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 添加数据库
+</span><span class="c1"></span><span class="k">create</span> <span class="k">database</span> <span class="o">&lt;</span><span class="k">database</span><span class="o">&gt;</span>
+<span class="c1">-- 删除数据库
+</span><span class="c1"></span><span class="k">drop</span> <span class="k">database</span> <span class="o">&lt;</span><span class="k">database</span><span class="o">&gt;</span>
+<span class="c1">-- 修改数据库的默认字符集
+</span><span class="c1"></span><span class="n">alert</span> <span class="k">database</span> <span class="o">&lt;</span><span class="k">database</span><span class="o">&gt;</span> <span class="k">default</span> <span class="nb">character</span> <span class="k">set</span> <span class="o">&lt;</span><span class="nb">character</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 查看所有数据库
+</span><span class="c1"></span><span class="k">show</span> <span class="n">databases</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="表相关">表相关</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 选择数据库
+</span><span class="c1"></span><span class="n">use</span> <span class="o">&lt;</span><span class="k">database</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 创建表
+</span><span class="c1"></span><span class="k">create</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">type</span><span class="o">&gt;</span><span class="p">,...);</span>
+<span class="c1">-- 删除表
+</span><span class="c1"></span><span class="k">drop</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 修改表名
+</span><span class="c1"></span><span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="n">old_name</span><span class="o">&gt;</span> <span class="k">rename</span> <span class="k">to</span> <span class="o">&lt;</span><span class="n">new_name</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 添加字段
+</span><span class="c1"></span><span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">add</span> <span class="k">column</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">type</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 删除字段
+</span><span class="c1"></span><span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">drop</span> <span class="k">column</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 修改字段类型
+</span><span class="c1"></span><span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">modify</span> <span class="k">column</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">type</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 修改字段名称
+</span><span class="c1"></span><span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="n">change</span> <span class="k">column</span> <span class="o">&lt;</span><span class="n">old_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">new_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">type</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 查看所有表
+</span><span class="c1"></span><span class="k">show</span> <span class="n">tables</span><span class="p">;</span>
+<span class="c1">-- 查看表结构
+</span><span class="c1"></span><span class="k">desc</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="数据相关">数据相关</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 插入一行数据，指定所有字段的值，不能多或少
+</span><span class="c1"></span><span class="k">insert</span> <span class="k">into</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">values</span><span class="p">(</span><span class="o">&lt;</span><span class="n">value1</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">value2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...);</span>
+<span class="c1">-- 插入一行数据，指定字段和值
+</span><span class="c1"></span><span class="k">insert</span> <span class="k">into</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">column1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">column2</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">values</span><span class="p">(</span><span class="o">&lt;</span><span class="n">value1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">value2</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="c1">-- 删除所有行，直接释放数据页，效率高不可恢复，清空主键标识，不激发触发器
+</span><span class="c1"></span><span class="k">truncate</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 删除行，不加 where 清空数据表时，也是一行一行删，有记录可恢复，不清空主键标识，会激发触发器
+</span><span class="c1"></span><span class="k">delete</span> <span class="k">from</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="p">[</span><span class="k">where</span> <span class="err">条件列表</span><span class="p">];</span>
+<span class="c1">-- 修改行字段值
+</span><span class="c1"></span><span class="k">update</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">set</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;=&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">,...</span> <span class="p">[</span><span class="k">where</span> <span class="err">条件列表</span><span class="p">];</span>
+<span class="c1">-- 查询
+</span><span class="c1"></span><span class="k">select</span> <span class="p">[</span><span class="k">distinct</span><span class="p">]</span> <span class="o">&lt;</span><span class="err">字段列表</span><span class="o">&gt;</span> <span class="k">from</span> <span class="o">&lt;</span><span class="err">表名列表</span><span class="o">&gt;</span>
+ <span class="p">[</span><span class="k">where</span> <span class="err">条件列表</span><span class="p">]</span>
+ <span class="p">[</span><span class="k">union</span> <span class="p">[</span><span class="k">all</span><span class="p">]</span> <span class="k">where</span><span class="p">...]</span>
+ <span class="p">[</span><span class="k">inner</span> <span class="k">join</span> <span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span> <span class="k">on</span> <span class="o">&lt;</span><span class="err">连接条件</span><span class="o">&gt;</span><span class="p">]</span>
+ <span class="p">[</span><span class="k">left</span> <span class="p">[</span><span class="k">outer</span><span class="p">]</span> <span class="k">join</span> <span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span> <span class="k">on</span> <span class="o">&lt;</span><span class="err">连接条件</span><span class="o">&gt;</span><span class="p">]</span>
+ <span class="p">[</span><span class="k">group</span> <span class="k">by</span> <span class="o">&lt;</span><span class="err">列名列表</span><span class="o">&gt;</span> <span class="p">[</span><span class="k">having</span> <span class="err">条件列表</span><span class="p">][</span><span class="k">with</span> <span class="k">rollup</span><span class="p">]]</span>
+ <span class="p">[</span><span class="k">order</span> <span class="k">by</span> <span class="o">&lt;</span><span class="err">排序字段</span><span class="o">&gt;</span> <span class="p">[</span><span class="k">asc</span><span class="o">/</span><span class="k">desc</span><span class="p">]]</span>
+ <span class="p">[</span><span class="k">limit</span> <span class="p">[</span><span class="err">起始行下标</span><span class="p">],</span><span class="o">&lt;</span><span class="err">查询行数</span><span class="o">&gt;</span><span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="列类型">列类型</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 整型
+</span><span class="c1"></span><span class="err">类型</span>         <span class="err">字节</span>     <span class="err">范围（有符号位）</span>
+<span class="n">tinyint</span>     <span class="mi">1</span><span class="err">字节</span>    <span class="o">-</span><span class="mi">128</span> <span class="o">~</span> <span class="mi">127</span>      <span class="err">无符号位：</span><span class="mi">0</span> <span class="o">~</span> <span class="mi">255</span>
+<span class="nb">smallint</span>    <span class="mi">2</span><span class="err">字节</span>    <span class="o">-</span><span class="mi">32768</span> <span class="o">~</span> <span class="mi">32767</span>
+<span class="n">mediumint</span>   <span class="mi">3</span><span class="err">字节</span>    <span class="o">-</span><span class="mi">8388608</span> <span class="o">~</span> <span class="mi">8388607</span>
+<span class="nb">int</span>         <span class="mi">4</span><span class="err">字节</span>
+
+<span class="c1">-- 浮点型
+</span><span class="c1"></span><span class="err">类型</span>              <span class="err">字节</span>
+<span class="nb">float</span><span class="p">(</span><span class="err">单精度</span><span class="p">)</span>     <span class="mi">4</span><span class="err">字节</span>
+<span class="n">double</span><span class="p">(</span><span class="err">双精度</span><span class="p">)</span>    <span class="mi">8</span><span class="err">字节</span>
+
+<span class="c1">-- 字符串
+</span><span class="c1"></span><span class="nb">char</span>    <span class="err">定长字符串，速度快，但浪费空间</span>
+<span class="nb">varchar</span> <span class="err">变长字符串，速度慢，但节省空间</span>
+
+<span class="c1">-- 时间日期类型
+</span><span class="c1"></span><span class="n">datetime</span>    <span class="mi">8</span><span class="err">字节</span>    <span class="err">日期及时间</span>    <span class="mi">1000</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="err">到</span> <span class="mi">9999</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span>
+<span class="nb">date</span>        <span class="mi">3</span><span class="err">字节</span>    <span class="err">日期</span>         <span class="mi">1000</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="err">到</span> <span class="mi">9999</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span>
+<span class="k">timestamp</span>   <span class="mi">4</span><span class="err">字节</span>    <span class="err">时间戳</span>       <span class="mi">19700101000000</span> <span class="err">到</span> <span class="mi">2038</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">19</span> <span class="mi">03</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">07</span>
+<span class="n">time</span>        <span class="mi">3</span><span class="err">字节</span>    <span class="err">时间</span>         <span class="o">-</span><span class="mi">838</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="err">到</span> <span class="mi">838</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span>
+<span class="k">year</span>        <span class="mi">1</span><span class="err">字节</span>    <span class="err">年份</span>         <span class="mi">1901</span> <span class="o">-</span> <span class="mi">2155</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="列约束">列约束</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">default
+not null
+unique
+primary key
+auto_increment
+zerofill
+foreign key
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="内置函数">内置函数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 数值函数
+</span><span class="c1"></span><span class="k">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>          <span class="c1">-- 绝对值 abs(-10.9) = 10
+</span><span class="c1"></span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>    <span class="c1">-- 格式化千分位数值 format(1234567.456, 2) = 1,234,567.46
+</span><span class="c1"></span><span class="n">ceil</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>         <span class="c1">-- 向上取整 ceil(10.1) = 11
+</span><span class="c1"></span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>        <span class="c1">-- 向下取整 floor (10.1) = 10
+</span><span class="c1"></span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>        <span class="c1">-- 四舍五入去整
+</span><span class="c1"></span><span class="k">mod</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>       <span class="c1">-- m%n m mod n 求余 10%3=1
+</span><span class="c1"></span><span class="n">pi</span><span class="p">()</span>            <span class="c1">-- 获得圆周率
+</span><span class="c1"></span><span class="n">pow</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>       <span class="c1">-- m^n
+</span><span class="c1"></span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>         <span class="c1">-- 算术平方根
+</span><span class="c1"></span><span class="n">rand</span><span class="p">()</span>          <span class="c1">-- 随机数
+</span><span class="c1"></span><span class="k">truncate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>  <span class="c1">-- 截取d位小数
+</span><span class="c1">-- 时间日期函数
+</span><span class="c1"></span><span class="n">now</span><span class="p">(),</span> <span class="k">current_timestamp</span><span class="p">();</span>     <span class="c1">-- 当前日期时间
+</span><span class="c1"></span><span class="k">current_date</span><span class="p">();</span>                 <span class="c1">-- 当前日期
+</span><span class="c1"></span><span class="k">current_time</span><span class="p">();</span>                 <span class="c1">-- 当前时间
+</span><span class="c1"></span><span class="nb">date</span><span class="p">(</span><span class="s1">&#39;yyyy-mm-dd hh:ii:ss&#39;</span><span class="p">);</span>    <span class="c1">-- 获取日期部分
+</span><span class="c1"></span><span class="n">time</span><span class="p">(</span><span class="s1">&#39;yyyy-mm-dd hh:ii:ss&#39;</span><span class="p">);</span>    <span class="c1">-- 获取时间部分
+</span><span class="c1"></span><span class="n">date_format</span><span class="p">(</span><span class="s1">&#39;yyyy-mm-dd hh:ii:ss&#39;</span><span class="p">,</span> <span class="s1">&#39;%d %y %a %d %m %b %j&#39;</span><span class="p">);</span> <span class="c1">-- 格式化时间
+</span><span class="c1"></span><span class="n">unix_timestamp</span><span class="p">();</span>               <span class="c1">-- 获得unix时间戳
+</span><span class="c1"></span><span class="n">from_unixtime</span><span class="p">();</span>                <span class="c1">-- 从时间戳获得时间
+</span><span class="c1">-- 字符串函数
+</span><span class="c1"></span><span class="k">length</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>          <span class="c1">-- string长度，字节
+</span><span class="c1"></span><span class="k">char_length</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>     <span class="c1">-- string的字符个数
+</span><span class="c1"></span><span class="k">substring</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="k">position</span> <span class="p">[,</span><span class="k">length</span><span class="p">])</span>      <span class="c1">-- 从str的position开始,取length个字符
+</span><span class="c1"></span><span class="k">replace</span><span class="p">(</span><span class="n">str</span> <span class="p">,</span><span class="n">search_str</span> <span class="p">,</span><span class="n">replace_str</span><span class="p">)</span>   <span class="c1">-- 在str中用replace_str替换search_str
+</span><span class="c1"></span><span class="n">instr</span><span class="p">(</span><span class="n">string</span> <span class="p">,</span><span class="k">substring</span><span class="p">)</span>    <span class="c1">-- 返回substring首次在string中出现的位置
+</span><span class="c1"></span><span class="n">concat</span><span class="p">(</span><span class="n">string</span> <span class="p">[,...])</span>   <span class="c1">-- 连接字串
+</span><span class="c1"></span><span class="n">charset</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>            <span class="c1">-- 返回字串字符集
+</span><span class="c1"></span><span class="n">lcase</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>           <span class="c1">-- 转换成小写
+</span><span class="c1"></span><span class="k">left</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="k">length</span><span class="p">)</span>    <span class="c1">-- 从string2中的左边起取length个字符
+</span><span class="c1"></span><span class="n">load_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>    <span class="c1">-- 从文件读取内容
+</span><span class="c1"></span><span class="n">locate</span><span class="p">(</span><span class="k">substring</span><span class="p">,</span> <span class="n">string</span> <span class="p">[,</span><span class="n">start_position</span><span class="p">])</span> <span class="c1">-- 同instr,但可指定开始位置
+</span><span class="c1"></span><span class="n">lpad</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="k">length</span><span class="p">,</span> <span class="k">pad</span><span class="p">)</span>   <span class="c1">-- 重复用pad加在string开头,直到字串长度为length
+</span><span class="c1"></span><span class="n">ltrim</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>           <span class="c1">-- 去除前端空格
+</span><span class="c1"></span><span class="n">repeat</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="k">count</span><span class="p">)</span>   <span class="c1">-- 重复count次
+</span><span class="c1"></span><span class="n">rpad</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="k">length</span><span class="p">,</span> <span class="k">pad</span><span class="p">)</span>   <span class="c1">--在str后用pad补充,直到长度为length
+</span><span class="c1"></span><span class="n">rtrim</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>           <span class="c1">-- 去除后端空格
+</span><span class="c1"></span><span class="n">strcmp</span><span class="p">(</span><span class="n">string1</span> <span class="p">,</span><span class="n">string2</span><span class="p">)</span>    <span class="c1">-- 逐字符比较两字串大小
+</span><span class="c1">-- 流程函数
+</span><span class="c1"></span><span class="k">case</span> <span class="k">when</span> <span class="p">[</span><span class="n">condition</span><span class="p">]</span> <span class="k">then</span> <span class="k">result</span> <span class="p">[</span><span class="k">when</span> <span class="p">[</span><span class="n">condition</span><span class="p">]</span> <span class="k">then</span> <span class="k">result</span> <span class="p">...]</span> <span class="p">[</span><span class="k">else</span> <span class="k">result</span><span class="p">]</span> <span class="k">end</span>   <span class="err">多分支</span>
+<span class="k">if</span><span class="p">(</span><span class="n">expr1</span><span class="p">,</span><span class="n">expr2</span><span class="p">,</span><span class="n">expr3</span><span class="p">)</span>  <span class="err">双分支。</span>
+<span class="c1">-- 聚合函数
+</span><span class="c1"></span><span class="k">count</span><span class="p">()</span>
+<span class="k">sum</span><span class="p">();</span>
+<span class="k">max</span><span class="p">();</span>
+<span class="k">min</span><span class="p">();</span>
+<span class="k">avg</span><span class="p">();</span>
+<span class="n">group_concat</span><span class="p">()</span>
+<span class="c1">-- 其他常用函数
+</span><span class="c1"></span><span class="n">md5</span><span class="p">();</span>
+<span class="k">default</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="扩展">扩展</h2>
+<h3 id="如何进行-sql-优化">如何进行 SQL 优化？</h3>
+<p>其实需要优化的主要是慢 sql 和热点 sql 两部分，其他的只要不是写的太难看，基本根据常用的条件字段加个索引就足以解决问题了。</p>
+<p>慢 sql 的话，可以开启 MySQL 的慢查询日志，就可以找到对应的 sql 进行相应的调整了。而热点 sql，其实和业务相关，比如说某个查询就是会调用的比较频繁，这个 MySQL 就帮不了我们了，可以自己在 DAO 层打印日志，再通过 sed 根据日志统计热点 sql，当然也可以有其他方案。我记得 Spring Boot 好像就有类似的支持。</p>
+<p>找到需要进行优化的 sql 后可以通过 explain 对其执行计划进行分析，找到低效原因，针对性的进行优化。</p>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000010941790" target="_blank" rel="noopener noreffer">优化 sql 语句的一般步骤</a><br>
+<a href="https://segmentfault.com/a/1190000021458117?utm_source=tag-newest" target="_blank" rel="noopener noreffer">一张图彻底搞懂 MySQL 的 explain</a></p>
+</blockquote>
+<h2 id="应用场景">应用场景</h2>
+<h3 id="分页查询">分页查询</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 使用 limit 子句进行分页查询, limit &lt;(page-1)*pageSize&gt;,&lt;pageSize&gt;
+</span><span class="c1">-- 只写一个参数的情况下，是查询前多少条，也就是 limit n; 等于 limit 0,n;
+</span><span class="c1"></span><span class="k">select</span> <span class="o">&lt;</span><span class="n">columns</span><span class="o">&gt;</span> <span class="k">from</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">limit</span> <span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="多表查询">多表查询</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 内连接查询
+</span><span class="c1"></span><span class="k">select</span> <span class="o">&lt;</span><span class="n">columns</span><span class="o">&gt;</span> <span class="k">from</span> <span class="o">&lt;</span><span class="n">table1</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">table2</span><span class="o">&gt;</span> <span class="k">where</span> <span class="o">&lt;</span><span class="n">table1_id</span><span class="o">&gt;=&lt;</span><span class="n">table2_id</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">select</span> <span class="o">&lt;</span><span class="n">columns</span><span class="o">&gt;</span> <span class="k">from</span> <span class="o">&lt;</span><span class="n">table1</span><span class="o">&gt;</span> <span class="k">inner</span> <span class="k">join</span> <span class="o">&lt;</span><span class="n">table2</span><span class="o">&gt;</span> <span class="k">on</span> <span class="o">&lt;</span><span class="n">table1_id</span><span class="o">&gt;=&lt;</span><span class="n">table2_id</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 左外连接查询
+</span><span class="c1">-- 使用左边表的数据去匹配右边表的数据，如果符合连接条件的结果就显示，如果不符合连接条件的则显示 null
+</span><span class="c1"></span><span class="k">select</span> <span class="o">&lt;</span><span class="n">columns</span><span class="o">&gt;</span> <span class="k">from</span> <span class="o">&lt;</span><span class="n">table1</span><span class="o">&gt;</span> <span class="k">left</span> <span class="k">outer</span> <span class="k">join</span> <span class="o">&lt;</span><span class="n">table2</span><span class="o">&gt;</span> <span class="k">on</span> <span class="o">&lt;</span><span class="n">table1_id</span><span class="o">&gt;=&lt;</span><span class="n">table2_id</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 自连接查询
+</span><span class="c1">-- 就是虚拟出一张表，通过别名的方式，进行内连接或者外连接查询
+</span><span class="c1"></span><span class="k">select</span> <span class="o">&lt;</span><span class="n">columns</span><span class="o">&gt;</span> <span class="k">from</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">as</span> <span class="n">a</span> <span class="k">inner</span> <span class="k">join</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">as</span> <span class="n">b</span> <span class="k">on</span> <span class="o">&lt;</span><span class="n">a_id</span><span class="o">&gt;=&lt;</span><span class="n">b_xxx</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="子查询">子查询</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 查询条件未知的问题时，可以分解成多个条件已知的问题
+</span><span class="c1">-- 在使用索引的情况下，多表查询要比子查询效率高，因此能用多表查询的就不要用子查询
+</span><span class="c1">-- 子查询只会返回一个结果的，父查询用=、!=、&gt;=、&lt;=、&gt;、&lt;，这些符号来比较
+</span><span class="c1"></span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="o">&lt;</span><span class="n">table1</span><span class="o">&gt;</span> <span class="k">where</span> <span class="o">&lt;</span><span class="n">column1</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="k">select</span> <span class="o">&lt;</span><span class="n">column1</span><span class="o">&gt;</span> <span class="k">from</span> <span class="o">&lt;</span><span class="n">table2</span><span class="o">&gt;</span> <span class="k">where</span> <span class="p">...);</span>
+<span class="c1">-- 子查询会返回多个结果的，父查询用in、any、all，这些符号来比较
+</span><span class="c1"></span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="o">&lt;</span><span class="n">table1</span><span class="o">&gt;</span> <span class="k">where</span> <span class="o">&lt;</span><span class="n">column1</span><span class="o">&gt;</span> <span class="k">in</span> <span class="p">(</span><span class="k">select</span> <span class="o">&lt;</span><span class="n">column1</span><span class="o">&gt;</span> <span class="k">from</span> <span class="o">&lt;</span><span class="n">table2</span><span class="o">&gt;</span> <span class="k">where</span> <span class="p">...);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="分组统计查询">分组统计查询</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 分组查询 column 列并统计数目
+</span><span class="c1"></span><span class="k">select</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">group</span> <span class="k">by</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="c1">-- 分组查询后筛选符合条件的行
+</span><span class="c1"></span><span class="k">select</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">group</span> <span class="k">by</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span> <span class="k">having</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="mysql-update-误操作后恢复数据">MySQL UPDATE 误操作后恢复数据</h3>
+<p>使用 sed 命令恢复。参考 <a href="https://blog.51cto.com/wujianwei/2294284" target="_blank" rel="noopener noreffer">mysqlbinlog 结合 sed 命令恢复 update 时未加 where 条件之前的数据</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-03-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://blog.orionpax.top/2020/03/mysql/" data-title="MySQL 的使用" data-hashtags="工具"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://blog.orionpax.top/2020/03/mysql/" data-hashtag="工具"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Reddit" data-sharer="reddit" data-url="http://blog.orionpax.top/2020/03/mysql/"><i class="fab fa-reddit fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://blog.orionpax.top/2020/03/mysql/" data-title="MySQL 的使用"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://blog.orionpax.top/2020/03/mysql/" data-title="MySQL 的使用"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://blog.orionpax.top/2020/03/mysql/" data-title="MySQL 的使用" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://blog.orionpax.top/2020/03/mysql/" data-title="MySQL 的使用" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://blog.orionpax.top/2020/03/mysql/" data-title="MySQL 的使用"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://blog.orionpax.top/2020/03/mysql/" data-title="MySQL 的使用"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Trello" data-sharer="trello" data-url="http://blog.orionpax.top/2020/03/mysql/" data-title="MySQL 的使用" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2020/03/restful/" class="prev" rel="prev" title="RESTful 知识总结"><i class="fas fa-angle-left fa-fw"></i>RESTful 知识总结</a>
+            <a href="/2020/03/flutter/" class="next" rel="next" title="Flutter 的使用">Flutter 的使用<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/OrionPax19970905" target="_blank">OrionPax</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="/lib/valine/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"nW05u87yweVedDRhj6AUgzR1-gzGzoHsz","appKey":"4HgKbiggTv7ocU789S5WO6ov","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"确定不说点什么?","recordIP":true,"visitor":true}},"search":{"algoliaAppID":"1Z7P4N2DNP","algoliaIndex":"OrionPax Blog","algoliaSearchKey":"12b884f5e1e54aeab4cba52aeaf76362","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
